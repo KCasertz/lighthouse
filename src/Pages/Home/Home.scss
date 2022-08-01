@@ -1,0 +1,33 @@
+.home {
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  &__heading {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  &__hero-container {
+    display: flex;
+    flex-direction: row;
+    // justify-content: center;
+    align-items: center;
+  }
+
+  &__right-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 10px;
+    background-color: #8888ff;
+    color: white;
+    font-weight: bold;
+    height: fit-content;
+    width: 500px;
+    border-radius: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
