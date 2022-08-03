@@ -6,6 +6,8 @@ import "./App.scss";
 import Home from "./Pages/Home/Home";
 import Results from "./Pages/Results/Results";
 import ServiceDetails from "./Pages/ServiceDetails/ServiceDetails";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (

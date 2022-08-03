@@ -1,0 +1,66 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/typography" as *;
+
+.header {
+  height: 10rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  // border-bottom: solid 1px #281251;
+  position: sticky;
+  top: 0;
+  background-color: #8888ff;
+  // background-color: white;
+  color: white;
+  width: 100%;
+  align-items: center;
+
+  // justify-content: space-between;
+  // align-items: baseline;
+
+  &__logo-container {
+    display: flex;
+    align-items: center;
+    @include t-d-page-header;
+  }
+  &__logo {
+    height: 50px;
+    margin: 16px 16px 16px 16px;
+    // align-self: center;
+  }
+
+  &__logo-text {
+    font-size: 3rem;
+    font-style: italic;
+  }
+
+  &__logo-icon-wrapper {
+    background-color: white;
+    // border: solid 1px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    // background-image: url("../../assets/plymouth.png");
+  }
+
+  &__nav-list {
+    display: flex;
+    list-style: none;
+    margin-left: 100px;
+
+    // gap: 20px;
+  }
+
+  &__nav-list-item {
+    // padding-right: 30px;
+    margin-right: 30px;
+  }
+}

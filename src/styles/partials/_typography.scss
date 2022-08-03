@@ -3,32 +3,41 @@
 @use "./colors" as *;
 
 @font-face {
-  font-family: "Teko";
-  src: url("../../assets/font/Teko-Light.ttf") format("truetype");
-  font-weight: 300;
-}
-@font-face {
-  font-family: "Teko";
-  src: url("../../assets/font/Teko-Regular.ttf") format("truetype");
+  font-family: "Asap";
+  src: url("../../assets/font/Asap-Italic-VariableFont_wght.ttf")
+    format("truetype");
   font-weight: 400;
-}
-@font-face {
-  font-family: "Teko";
-  src: url("../../assets/font/Teko-Medium.ttf") format("truetype");
-  font-weight: 500;
-}
-@font-face {
-  font-family: "Teko";
-  src: url("../../assets/font/Teko-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-}
-@font-face {
-  font-family: "Teko";
-  src: url("../../assets/font/Teko-Bold.ttf") format("truetype");
-  font-weight: 700;
+  font-style: italic;
 }
 
-$font-stack: "Teko", Verdana, sans-serif;
+@font-face {
+  font-family: "Asap";
+  src: url("../../assets/font/Asap-VariableFont_wght.ttf") format("truetype");
+  font-weight: 400;
+}
+
+// @font-face {
+//   font-family: "Teko";
+//   src: url("../../assets/font/Teko-Regular.ttf") format("truetype");
+//   font-weight: 400;
+// }
+// @font-face {
+//   font-family: "Teko";
+//   src: url("../../assets/font/Teko-Medium.ttf") format("truetype");
+//   font-weight: 500;
+// }
+// @font-face {
+//   font-family: "Teko";
+//   src: url("../../assets/font/Teko-SemiBold.ttf") format("truetype");
+//   font-weight: 600;
+// }
+// @font-face {
+//   font-family: "Teko";
+//   src: url("../../assets/font/Teko-Bold.ttf") format("truetype");
+//   font-weight: 700;
+// }
+
+$font-stack: "Asap", Verdana, sans-serif;
 
 // Default font sizes -- change if needed in CSS using defined mixins
 body {
