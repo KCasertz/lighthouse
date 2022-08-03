@@ -1,0 +1,125 @@
+@use "./breakpoints" as *;
+@use "./colors" as *;
+
+@mixin font-properties($font-size, $line-height, $font-weight) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+}
+
+// Mobile Font Mixins
+
+@mixin page-header {
+  @include font-properties(2.8rem, 3.6rem, 600);
+}
+
+@mixin subheader {
+  @include font-properties(2rem, 2.8rem, 600);
+}
+
+@mixin label-link-button {
+  @include font-properties(1.3rem, 2rem, 600);
+}
+
+@mixin table-header {
+  @include font-properties(1.1rem, 1.6rem, 600);
+  color: $lighthouse-purple;
+  text-transform: uppercase;
+}
+
+@mixin body-large {
+  @include font-properties(1.5rem, 2.6rem, 400);
+}
+
+@mixin body-medium {
+  @include font-properties(1.3rem, 2rem, 400);
+}
+
+@mixin body-small {
+  @include font-properties(1.1rem, 1.6rem, 400);
+}
+
+// Desktop and Tablet Font Mixins
+
+@mixin t-d-page-header {
+  @include font-properties(3.2rem, 4rem, 600);
+}
+
+@mixin t-d-subheader {
+  @include font-properties(2.4rem, 3.2rem, 600);
+}
+
+@mixin t-d-label-link-button {
+  @include font-properties(1.4rem, 2.2rem, 600);
+}
+
+@mixin t-d-table-header {
+  @include font-properties(1.2rem, 1.8rem, 600);
+  color: $lighthouse-purple;
+  text-transform: uppercase;
+}
+
+@mixin t-d-body-large {
+  @include font-properties(1.6rem, 2.8rem, 400);
+}
+
+@mixin t-d-body-medium {
+  @include font-properties(1.4rem, 2.2rem, 400);
+}
+
+@mixin t-d-body-small {
+  @include font-properties(1.2rem, 1.8rem, 400);
+}
+
+@mixin form-fields {
+  height: 2rem;
+  width: 100%;
+  padding: 0rem 1rem;
+  border-radius: 2.5rem;
+  color: $light-grey;
+  border: 1px solid $light-grey;
+
+  &:active {
+    outline-color: $lighthouse-dark-blue;
+    color: $lighthouse-dark-blue;
+  }
+
+  &:focus {
+    outline-color: $lighthouse-dark-blue;
+  }
+}
+
+@mixin primary-button {
+  cursor: pointer;
+  height: 2rem;
+  width: 100%;
+  padding: 0rem 1rem;
+  color: white;
+  background-color: $lighthouse-purple;
+  border-radius: 2.5rem;
+
+  &:hover {
+    background-color: $lighthouse-dark-blue;
+  }
+}
+
+@mixin secondary-button {
+  cursor: pointer;
+  height: 2rem;
+  width: 100%;
+  padding: 0rem 1rem;
+  border-radius: 1.25rem;
+  background-color: $white;
+  color: $lighthouse-dark-blue;
+  outline-color: $lighthouse-purple;
+
+  &:hover {
+    outline-color: $lighthouse-purple;
+    color: white;
+  }
+}
+
+@mixin margin-reset {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}

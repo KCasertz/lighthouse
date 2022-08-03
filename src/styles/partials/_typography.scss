@@ -1,0 +1,83 @@
+@use "./mixins" as *;
+@use "./breakpoints" as *;
+@use "./colors" as *;
+
+@font-face {
+  font-family: "Teko";
+  src: url("../../assets/font/Teko-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Teko";
+  src: url("../../assets/font/Teko-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Teko";
+  src: url("../../assets/font/Teko-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Teko";
+  src: url("../../assets/font/Teko-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Teko";
+  src: url("../../assets/font/Teko-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+$font-stack: "Teko", Verdana, sans-serif;
+
+// Default font sizes -- change if needed in CSS using defined mixins
+body {
+  font-family: $font-stack;
+  color: $lighthouse-dark-blue;
+}
+
+h1 {
+  @include page-header;
+
+  @include aboveMobile {
+    @include t-d-page-header;
+  }
+}
+
+h2 {
+  @include subheader;
+
+  @include aboveMobile {
+    @include t-d-subheader;
+  }
+}
+
+h3,
+label,
+a,
+button {
+  @include label-link-button;
+
+  @include aboveMobile {
+    @include t-d-label-link-button;
+  }
+}
+
+h4 {
+  @include table-header;
+
+  @include aboveMobile {
+    @include t-d-table-header;
+  }
+}
+
+p,
+input,
+textarea {
+  font-family: $font-stack;
+  @include body-medium;
+
+  @include aboveMobile {
+    @include t-d-body-medium;
+  }
+}
