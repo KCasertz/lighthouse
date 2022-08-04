@@ -6,6 +6,7 @@ import heroImage from "../../assets/images/lighthouseHero.jpg";
 import { useState, useEffect } from "react";
 import API_URL from "../../api/api";
 import axios from "axios";
+import BACKEND_PORT from "../../api/api";
 
 export default function Home() {
   // initialise state (default empty) for each input field
@@ -15,6 +16,7 @@ export default function Home() {
   const [availability, setAvailability] = useState(["test", "test"]);
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
+  const [results, setResults] = useState([]);
 
   //create function that removes first space from postcode string
   const removeFirstSpace = (string) => {
@@ -23,64 +25,116 @@ export default function Home() {
 
   //create function which takes postcode and send postreq to API to convert to lat and long and sets state with result
 
-  const convertPostcode = (postcode) => {
+  const convertPostcode = (event) => {
     //first remove any spaces if there are any
-    const postcodeNoSpace = removeFirstSpace(postcode);
+    const postcodeNoSpace = removeFirstSpace(postCode);
 
     //create dynamic url and send to API
     const apiURL = `https://api.geoapify.com/v1/geocode/search?text=${postcodeNoSpace}&lang=en&limit=1&type=postcode&format=json&apiKey=${API_URL}`;
 
     axios
-      // .get(`${API_URL}/videos`)
       .get(apiURL)
       .then((response) => {
-        setLong(response.data.results[0].lon);
-        setLat(response.data.results[0].lat);
+        // setLong(response.data.results[0].lon);
+        // setLat(response.data.results[0].lat);
+        const form = event.target;
+        const availabilityArray = [
+          form.monAm.checked,
+          form.monPm.checked,
+          form.monEve.checked,
+          form.tueAm.checked,
+          form.tuePm.checked,
+          form.tueEve.checked,
+          form.wedAm.checked,
+          form.wedPm.checked,
+          form.wedEve.checked,
+          form.thuAm.checked,
+          form.thuPm.checked,
+          form.thuEve.checked,
+          form.friAm.checked,
+          form.friPm.checked,
+          form.friEve.checked,
+          form.satAm.checked,
+          form.satPm.checked,
+          form.satEve.checked,
+          form.sunAm.checked,
+          form.sunPm.checked,
+          form.sunEve.checked,
+        ];
+        setAvailability(availabilityArray);
+        const userSearchCriteria = {
+          deliveryMethod: deliveryMethod,
+          location: {
+            long: response.data.results[0].lon,
+            lat: response.data.results[0].lat,
+          },
+          maxRad: Number(maxRad),
+          availability: [availabilityArray],
+        };
+        console.log("userSearchCriteria->", userSearchCriteria);
+        getServicesArray(userSearchCriteria);
       })
       .catch((error) => {
         alert(error);
       });
   };
 
+  const getServicesArray = async (userSearchCriteria) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/services/filtered`,
+        userSearchCriteria
+      );
+      setResults(response.data);
+      console.log("Data->", response.data);
+    } catch (error) {
+      console.log("getServicesArray->", error);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const form = event.target;
-    const availabilityArray = [
-      form.monAm.checked,
-      form.monPm.checked,
-      form.monEve.checked,
-      form.tueAm.checked,
-      form.tuePm.checked,
-      form.tueEve.checked,
-      form.wedAm.checked,
-      form.wedPm.checked,
-      form.wedEve.checked,
-      form.thuAm.checked,
-      form.thuPm.checked,
-      form.thuEve.checked,
-      form.friAm.checked,
-      form.friPm.checked,
-      form.friEve.checked,
-      form.satAm.checked,
-      form.satPm.checked,
-      form.satEve.checked,
-      form.sunAm.checked,
-      form.sunPm.checked,
-      form.sunEve.checked,
-    ];
+    convertPostcode(event);
 
-    setAvailability(availabilityArray);
+    // const form = event.target;
+    // const availabilityArray = [
+    //   form.monAm.checked,
+    //   form.monPm.checked,
+    //   form.monEve.checked,
+    //   form.tueAm.checked,
+    //   form.tuePm.checked,
+    //   form.tueEve.checked,
+    //   form.wedAm.checked,
+    //   form.wedPm.checked,
+    //   form.wedEve.checked,
+    //   form.thuAm.checked,
+    //   form.thuPm.checked,
+    //   form.thuEve.checked,
+    //   form.friAm.checked,
+    //   form.friPm.checked,
+    //   form.friEve.checked,
+    //   form.satAm.checked,
+    //   form.satPm.checked,
+    //   form.satEve.checked,
+    //   form.sunAm.checked,
+    //   form.sunPm.checked,
+    //   form.sunEve.checked,
+    // ];
 
-    const userSearchCriteria = {
-      deliveryMethod: "",
-      location: {
-        long: null,
-        lat: null,
-      },
-      maxRad: null,
-      availability: [],
-    };
+    // setAvailability(availabilityArray);
+
+    // const userSearchCriteria = {
+    //   deliveryMethod: deliveryMethod,
+    //   location: {
+    //     long: long,
+    //     lat: lat,
+    //   },
+    //   maxRad: Number(event.target.maxRad.value),
+    //   availability: [availabilityArray],
+    // };
+    // console.log("userSearchCriteria->", userSearchCriteria);
+    // getServicesArray(userSearchCriteria);
   };
 
   return (
@@ -158,6 +212,23 @@ export default function Home() {
                 onChange={(event) => setPostcode(event.target.value)}
               />
               <button>Use current Location</button>
+              <div className="home__dropdown-container">
+                <select
+                  name="maxRad"
+                  className="home__dropdown-input"
+                  id="maxRad"
+                  // value="5"
+                  selected="selected"
+                  onChange={(event) => setMaxRad(event.target.value)}
+                >
+                  <option value="1">1</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                </select>
+                <label className="component__input-label" htmlFor="category">
+                  km
+                </label>
+              </div>
             </div>
             <label className="home__form-input-label" htmlFor="deliveryMethod">
               When would you like to receive support? AM is 8am to 12 midday. PM
