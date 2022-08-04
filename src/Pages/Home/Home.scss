@@ -5,19 +5,6 @@
 @use "../../styles/partials/typography" as *;
 
 .home {
-  &__hero-image-container {
-    width: 100%;
-    height: 800px;
-    background-position: center;
-    background-image: url("../../assets/images/lighthouseHero.jpg");
-    display: flex;
-    // align-items: center;
-    justify-content: flex-end;
-  }
-  &__hero-image {
-    width: 100%;
-  }
-
   &__hero-container {
     width: 100%;
     // display: flex;
@@ -25,26 +12,72 @@
     // justify-content: center;
     // align-items: center;
   }
+  &__hero-image-container {
+    width: 100%;
+    // height: 40%;
+    // background-position: center;
+    // background-size: contain;
+    // background-repeat: no-repeat;
 
-  &__lighthouse-animation {
-    width: 100px;
+    // background-image: url("../../assets/images/lighthouseHero.jpg");
+    display: flex;
+    // align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    // max-height: 80vh;
   }
 
-  &__hero-text-container {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    // padding: 20px 10px;
-    // background-color: #8888ff;
-    // margin: 20px;
-    color: #281251;
+  &__hero-image {
+    width: 100%;
+  }
 
-    height: 100%;
-    width: 30%;
-    margin-top: 200px;
-    margin-right: 75px;
-    border-radius: 15px;
+  // &__hero-image {
+  //   width: 100%;
+  // }
 
-    // background-color: purple;
+  &__lighthouse-animation {
+    width: 300px;
+    display: none;
+  }
+
+  // &__hero-text-container {
+  //   background-color: rgba(40, 18, 81, 0.5);
+  //   display: flex;
+  //   flex-direction: row;
+  //   text-align: center;
+  //   // padding: 20px 10px;
+  //   // background-color: #8888ff;
+  //   // margin: 20px;
+  //   color: #281251;
+
+  //   height: 100%;
+  //   width: 30%;
+  //   margin-top: 200px;
+  //   // margin-right: 75px;
+  //   border-radius: 15px;
+
+  //   // background-color: purple;
+  // }
+
+  &__main-container {
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 8px;
+    margin: 1.6rem;
+    position: relative;
+    top: -6rem;
+    height: fit-content;
+    border: solid 1px $lighthouse-dark-blue;
+    // box-shadow: 0px 2px 5px 0px #13182c1a;
+    z-index: 1;
+    background-color: white;
+    padding: 1.6rem;
+
+    @include tablet {
+      margin: 3.2rem;
+    }
+    @include desktop {
+      max-width: 102rem;
+      margin: 0 auto;
+    }
   }
 }
