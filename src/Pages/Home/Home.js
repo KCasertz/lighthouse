@@ -4,15 +4,84 @@ import lighthouseAnimation from "../../assets/lighthouseIconOne.gif";
 import heroImage from "../../assets/images/lighthouseHero.jpg";
 // import { RadioGroup, Radio } from "react-radio-group";
 import { useState, useEffect } from "react";
+import API_URL from "../../api/api";
+import axios from "axios";
 
 export default function Home() {
   // initialise state (default empty) for each input field
   const [deliveryMethod, setDeliveryMethod] = useState("");
   const [maxRad, setMaxRad] = useState(5);
   const [postCode, setPostcode] = useState("");
-  const [availability, setAvailability] = useState([]);
+  const [availability, setAvailability] = useState(["test", "test"]);
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
+
+  //create function that removes first space from postcode string
+  const removeFirstSpace = (string) => {
+    return string.replace(" ", "");
+  };
+
+  //create function which takes postcode and send postreq to API to convert to lat and long and sets state with result
+
+  const convertPostcode = (postcode) => {
+    //first remove any spaces if there are any
+    const postcodeNoSpace = removeFirstSpace(postcode);
+
+    //create dynamic url and send to API
+    const apiURL = `https://api.geoapify.com/v1/geocode/search?text=${postcodeNoSpace}&lang=en&limit=1&type=postcode&format=json&apiKey=${API_URL}`;
+
+    axios
+      // .get(`${API_URL}/videos`)
+      .get(apiURL)
+      .then((response) => {
+        setLong(response.data.results[0].lon);
+        setLat(response.data.results[0].lat);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const availabilityArray = [
+      form.monAm.checked,
+      form.monPm.checked,
+      form.monEve.checked,
+      form.tueAm.checked,
+      form.tuePm.checked,
+      form.tueEve.checked,
+      form.wedAm.checked,
+      form.wedPm.checked,
+      form.wedEve.checked,
+      form.thuAm.checked,
+      form.thuPm.checked,
+      form.thuEve.checked,
+      form.friAm.checked,
+      form.friPm.checked,
+      form.friEve.checked,
+      form.satAm.checked,
+      form.satPm.checked,
+      form.satEve.checked,
+      form.sunAm.checked,
+      form.sunPm.checked,
+      form.sunEve.checked,
+    ];
+
+    setAvailability(availabilityArray);
+
+    const userSearchCriteria = {
+      deliveryMethod: "",
+      location: {
+        long: null,
+        lat: null,
+      },
+      maxRad: null,
+      availability: [],
+    };
+  };
 
   return (
     <>
@@ -39,7 +108,7 @@ export default function Home() {
           <h1 className="home__main-header">
             Find a mental health service that's right for you
           </h1>
-          <form className="home__form">
+          <form className="home__form" onSubmit={handleSubmit}>
             {/* radio buttons below */}
 
             <label className="home__form-input-label" htmlFor="deliveryMethod">
@@ -83,7 +152,11 @@ export default function Home() {
                 Please enter your postcode, and select how far you could travel
                 to a service.
               </label>
-              <input type="text" name="postcode" />
+              <input
+                type="text"
+                name="postcode"
+                onChange={(event) => setPostcode(event.target.value)}
+              />
               <button>Use current Location</button>
             </div>
             <label className="home__form-input-label" htmlFor="deliveryMethod">
@@ -125,6 +198,7 @@ export default function Home() {
                     type="checkbox"
                     name="availability"
                     value="monAm"
+                    // onChange={(event) => setTest(event.target.checked)}
                   />
                 </div>
                 <div className="availability__col">
@@ -145,18 +219,18 @@ export default function Home() {
                 </div>
                 <div className="availability__col">
                   <input
-                    id="ThuAm"
+                    id="thuAm"
                     type="checkbox"
                     name="availability"
-                    value="ThuAm"
+                    value="thuAm"
                   />
                 </div>
                 <div className="availability__col">
                   <input
-                    id="FriAm"
+                    id="friAm"
                     type="checkbox"
                     name="availability"
-                    value="FriAm"
+                    value="friAm"
                   />
                 </div>
                 <div className="availability__col">
@@ -206,18 +280,18 @@ export default function Home() {
                 </div>
                 <div className="availability__col">
                   <input
-                    id="ThuPm"
+                    id="thuPm"
                     type="checkbox"
                     name="availability"
-                    value="ThuPm"
+                    value="thuPm"
                   />
                 </div>
                 <div className="availability__col">
                   <input
-                    id="FriPm"
+                    id="friPm"
                     type="checkbox"
                     name="availability"
-                    value="FriPm"
+                    value="friPm"
                   />
                 </div>
                 <div className="availability__col">
@@ -267,18 +341,18 @@ export default function Home() {
                 </div>
                 <div className="availability__col">
                   <input
-                    id="ThuEve"
+                    id="thuEve"
                     type="checkbox"
                     name="availability"
-                    value="ThuEve"
+                    value="thuEve"
                   />
                 </div>
                 <div className="availability__col">
                   <input
-                    id="FriEve"
+                    id="friEve"
                     type="checkbox"
                     name="availability"
-                    value="FriEve"
+                    value="friEve"
                   />
                 </div>
                 <div className="availability__col">
@@ -299,6 +373,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <button type="submit" className="home__availability-submit-button">
+              Find
+            </button>
           </form>
         </div>
       </section>
