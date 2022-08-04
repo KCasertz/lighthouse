@@ -80,6 +80,10 @@ export default function Home() {
   };
 
   const getServicesArray = async (userSearchCriteria) => {
+    console.log(
+      "userSearchCrit inside getservicearray func: ",
+      userSearchCriteria
+    );
     try {
       const response = await axios.get(
         `http://localhost:8080/services/filtered`,
