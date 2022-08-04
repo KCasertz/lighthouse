@@ -66,7 +66,7 @@
     position: relative;
     top: -6rem;
     height: fit-content;
-    border: solid 1px $lighthouse-dark-blue;
+    border: solid 1px lightgray;
     // box-shadow: 0px 2px 5px 0px #13182c1a;
     z-index: 1;
     background-color: white;
@@ -79,5 +79,27 @@
       max-width: 102rem;
       margin: 0 auto;
     }
+  }
+
+  &__availability-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__form-input-label {
+    margin: 1.6rem 0;
+    display: block;
+    // background-color: red;
+  }
+}
+
+.availability {
+  &__row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__col {
+    width: 5.5rem;
   }
 }

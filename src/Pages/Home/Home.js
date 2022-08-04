@@ -2,9 +2,18 @@ import React from "react";
 import "./Home.scss";
 import lighthouseAnimation from "../../assets/lighthouseIconOne.gif";
 import heroImage from "../../assets/images/lighthouseHero.jpg";
-import { RadioGroup, Radio } from "react-radio-group";
+// import { RadioGroup, Radio } from "react-radio-group";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  // initialise state (default empty) for each input field
+  const [deliveryMethod, setDeliveryMethod] = useState("");
+  const [maxRad, setMaxRad] = useState(5);
+  const [postCode, setPostcode] = useState("");
+  const [availability, setAvailability] = useState([]);
+  const [long, setLong] = useState("");
+  const [lat, setLat] = useState("");
+
   return (
     <>
       <div className="home__hero-container">
@@ -42,8 +51,7 @@ export default function Home() {
                 type="radio"
                 name="deliveryMethod"
                 value="ftf"
-                // onChange={handleChange}
-                // checked="true"
+                onChange={(event) => setDeliveryMethod(event.target.value)}
               />
               In person
             </label>
@@ -53,8 +61,7 @@ export default function Home() {
                 type="radio"
                 name="deliveryMethod"
                 value="calls"
-                // onChange={handleChange}
-                // checked="true"
+                onChange={(event) => setDeliveryMethod(event.target.value)}
               />
               Phone call
             </label>
@@ -64,8 +71,7 @@ export default function Home() {
                 type="radio"
                 name="deliveryMethod"
                 value="videoCalls"
-                // onChange={handleChange}
-                // checked="true"
+                onChange={(event) => setDeliveryMethod(event.target.value)}
               />
               Video call
             </label>
@@ -74,17 +80,18 @@ export default function Home() {
                 className="home__form-input-label"
                 htmlFor="deliveryMethod"
               >
-                How would you like to recieve support?
+                Please enter your postcode, and select how far you could travel
+                to a service.
               </label>
               <input type="text" name="postcode" />
               <button>Use current Location</button>
             </div>
             <label className="home__form-input-label" htmlFor="deliveryMethod">
-              When would you like to receive support? AM = 8am - 12 midday PM =
-              12 midday - 5pm Eve = 5pm - 8pm
+              When would you like to receive support? AM is 8am to 12 midday. PM
+              is 12 midday to 5pm. Eve is 5pm to 8pm.
             </label>
             <div className="home__availability-container">
-              <div className="availability__row availability__row--headings ">
+              <div className="availability__row availability__row--heading ">
                 <div className="availability__col availability__col--blank-space"></div>
                 <div className="availability__col availability__heading">
                   Mon
@@ -108,26 +115,72 @@ export default function Home() {
                   Sun
                 </div>
               </div>
-              <div className="availability__col availability__heading">AM</div>
-              <div className="availability__col availability__heading">
-                <input
-                  id="monAm"
-                  type="checkbox"
-                  name="availability"
-                  value="monAm"
-                />
+              <div className="availability__row availability__row--am">
+                <div className="availability__col availability__heading">
+                  AM
+                </div>
+                <div className="availability__col">
+                  <input
+                    id="monAm"
+                    type="checkbox"
+                    name="availability"
+                    value="monAm"
+                  />
+                </div>
+                <div className="availability__col">
+                  <input
+                    id="tueAm"
+                    type="checkbox"
+                    name="availability"
+                    value="tueAm"
+                  />
+                </div>
+                <div className="availability__col ">
+                  <input
+                    id="wedAm"
+                    type="checkbox"
+                    name="availability"
+                    value="wedAm"
+                  />
+                </div>
+                <div className="availability__col">
+                  <input
+                    id="ThuAm"
+                    type="checkbox"
+                    name="availability"
+                    value="ThuAm"
+                  />
+                </div>
+                <div className="availability__col">
+                  <input
+                    id="FriAm"
+                    type="checkbox"
+                    name="availability"
+                    value="FriAm"
+                  />
+                </div>
+                <div className="availability__col">
+                  <input
+                    id="satAm"
+                    type="checkbox"
+                    name="availability"
+                    value="satAm"
+                  />
+                </div>
+                <div className="availability__col">
+                  <input
+                    id="sunAm"
+                    type="checkbox"
+                    name="availability"
+                    value="sunAm"
+                  />
+                </div>
               </div>
-              <div className="availability__col">Tue</div>
-              <div className="availability__col ">Wed</div>
-              <div className="availability__col">Thu</div>
-              <div className="availability__col">Fri</div>
-              <div className="availability__col">Sat</div>
-              <div className="availability__col">Sun</div>
-              {/* <div className="availability__row availability__row--pm">
-              <div className="availability__col">AM</div>
-
-                
-                <div className="availability__col availability__col--mon">
+              <div className="availability__row availability__row--pm">
+                <div className="availability__col availability__heading">
+                  PM
+                </div>
+                <div className="availability__col">
                   <input
                     id="monPm"
                     type="checkbox"
@@ -135,7 +188,7 @@ export default function Home() {
                     value="monPm"
                   />
                 </div>
-                <div className="availability__col availability__col--tue">
+                <div className="availability__col">
                   <input
                     id="tuePm"
                     type="checkbox"
@@ -143,7 +196,7 @@ export default function Home() {
                     value="tuePm"
                   />
                 </div>
-                <div className="availability__col availability__col--wed">
+                <div className="availability__col ">
                   <input
                     id="wedPm"
                     type="checkbox"
@@ -151,23 +204,23 @@ export default function Home() {
                     value="wedPm"
                   />
                 </div>
-                <div className="availability__col availability__col--thu">
+                <div className="availability__col">
                   <input
-                    id="thuPm"
+                    id="ThuPm"
                     type="checkbox"
                     name="availability"
-                    value="thuPm"
+                    value="ThuPm"
                   />
                 </div>
-                <div className="availability__col availability__col--fri">
+                <div className="availability__col">
                   <input
-                    id="friPm"
+                    id="FriPm"
                     type="checkbox"
                     name="availability"
-                    value="friPm"
+                    value="FriPm"
                   />
                 </div>
-                <div className="availability__col availability__col--sat">
+                <div className="availability__col">
                   <input
                     id="satPm"
                     type="checkbox"
@@ -175,7 +228,7 @@ export default function Home() {
                     value="satPm"
                   />
                 </div>
-                <div className="availability__col availability__col--sun">
+                <div className="availability__col">
                   <input
                     id="sunPm"
                     type="checkbox"
@@ -184,66 +237,67 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="availability__col availability__"></div>
-                <div className="availability__col availability__col--mon">
+              <div className="availability__row availability__row--eve">
+                <div className="availability__col availability__heading">
+                  Eve
+                </div>
+                <div className="availability__col">
                   <input
-                    id="monAm"
+                    id="monEve"
                     type="checkbox"
                     name="availability"
-                    value="monPm"
+                    value="monEve"
                   />
                 </div>
-                <div className="availability__col availability__col--tue">
+                <div className="availability__col">
                   <input
-                    id="monAm"
+                    id="tueEve"
                     type="checkbox"
                     name="availability"
-                    value="tueAm"
+                    value="tueEve"
                   />
                 </div>
-                <div className="availability__col availability__col--wed">
+                <div className="availability__col ">
                   <input
-                    id="monAm"
+                    id="wedEve"
                     type="checkbox"
                     name="availability"
-                    value="wedAm"
+                    value="wedEve"
                   />
                 </div>
-                <div className="availability__col availability__col--thu">
+                <div className="availability__col">
                   <input
-                    id="monAm"
+                    id="ThuEve"
                     type="checkbox"
                     name="availability"
-                    value="thuAm"
+                    value="ThuEve"
                   />
                 </div>
-                <div className="availability__col availability__col--fri">
+                <div className="availability__col">
                   <input
-                    id="monAm"
+                    id="FriEve"
                     type="checkbox"
                     name="availability"
-                    value="friAm"
+                    value="FriEve"
                   />
                 </div>
-                <div className="availability__col availability__col--sat">
+                <div className="availability__col">
                   <input
-                    id="monAm"
+                    id="satEve"
                     type="checkbox"
                     name="availability"
-                    value="satAm"
+                    value="satEve"
                   />
                 </div>
-                <div className="availability__col availability__col--sun">
+                <div className="availability__col">
                   <input
-                    id="monAm"
+                    id="sunEve"
                     type="checkbox"
                     name="availability"
-                    value="sunAm"
+                    value="sunEve"
                   />
                 </div>
               </div>
-              <div className="availability__row availability__row--eve "></div>
-            </div> */}
             </div>
           </form>
         </div>
