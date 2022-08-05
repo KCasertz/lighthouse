@@ -18,6 +18,10 @@ body {
   display: flex;
   flex-direction: column;
 
+  &__title {
+    width: fit-content;
+  }
+
   &__header {
     display: flex;
     flex-direction: row;
@@ -30,11 +34,12 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    min-width: 13rem;
   }
 
   &__rating-text {
     font-size: 1.4rem;
-    margin-left: 1.6rem;
+    margin-left: 0.5rem;
   }
   &__wait-text {
     font-size: 1.4rem;
@@ -72,6 +77,24 @@ body {
     gap: 1.6rem;
   }
 
+  &__queer {
+    height: fit-content;
+    width: 8rem;
+
+    font-size: 1.6rem;
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.6rem;
+  }
+
+  &__lgbtq-flag {
+    height: 2rem;
+    margin-right: 0.5rem;
+  }
+
+  &__not-queer {
+    display: none;
+  }
   &__top-left-container {
     width: 50%;
   }
@@ -80,7 +103,7 @@ body {
     object-fit: fill;
     object-position: center;
     margin: -30px;
-    border-radius: 1rem;
+    // border-radius: 1rem;
     // height: 100%;
 
     width: 100%;

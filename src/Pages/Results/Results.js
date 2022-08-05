@@ -12,6 +12,7 @@ const Results = (props) => {
   ) : (
     <section className="results">
       <div className="results__container">
+        <h1 className="results__heading">Your results</h1>
         {/* <div>{services[0].name}</div> */}
         {services.map((service, i) => {
           return <ServiceCard serviceDetails={service} key={i} />;

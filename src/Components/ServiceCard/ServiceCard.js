@@ -2,6 +2,7 @@ import "./ServiceCard.scss";
 import React from "react";
 import ReactStars from "react-rating-stars-component";
 import waitList from "../../assets/icons/wait-icon.svg";
+import lgbtqFlag from "../../assets/icons/lgbtq.avif";
 var _ = require("lodash/core");
 
 const ServiceCard = (props) => {
@@ -51,6 +52,14 @@ const ServiceCard = (props) => {
           <div className="card__wait-container">
             <img src={waitList} alt="" className="card__wait-icon" />
             <p className="card__wait-text">{getAvgWait(service.waitingTime)}</p>
+          </div>
+          <div className={service.lgbtq ? "card__queer" : "card__not-queer"}>
+            <img
+              src={lgbtqFlag}
+              alt="lgbtq+ flag"
+              className="card__lgbtq-flag"
+            />
+            <p className="card__icon-text">LGBTQ+</p>
           </div>
         </div>
       </div>
