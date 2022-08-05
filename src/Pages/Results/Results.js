@@ -13,8 +13,8 @@ const Results = (props) => {
     <section className="results">
       <div className="results__container">
         {/* <div>{services[0].name}</div> */}
-        {services.map((service) => {
-          return <ServiceCard serviceDetails={service} />;
+        {services.map((service, i) => {
+          return <ServiceCard serviceDetails={service} key={i} />;
         })}
       </div>
     </section>
