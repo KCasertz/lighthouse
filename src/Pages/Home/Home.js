@@ -7,8 +7,12 @@ import { useState, useEffect } from "react";
 import API_URL from "../../api/api";
 import axios from "axios";
 import BACKEND_PORT from "../../api/api";
+import { useHistory } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 
-export default function Home() {
+export default function Home(props) {
+  const history = useHistory();
+  // const navigate = useNavigate();
   // initialise state (default empty) for each input field
   const [deliveryMethod, setDeliveryMethod] = useState("");
   const [maxRad, setMaxRad] = useState(5);
@@ -16,7 +20,7 @@ export default function Home() {
   const [availability, setAvailability] = useState(["test", "test"]);
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
-  const [results, setResults] = useState([]);
+  // const [results, setResults] = useState([]);
   const [useCurrentLocation, setUseCurrentLocation] = useState(false);
   const [isAvailAnytime, setIsAvailAnytime] = useState(true);
 
@@ -30,7 +34,7 @@ export default function Home() {
         `http://localhost:8080/services/filtered`,
         userSearchCriteria
       );
-      setResults(response.data);
+      props.setResults(response.data);
       console.log("Data->", response.data);
     } catch (error) {
       console.log("getServicesArray->", error);
@@ -120,10 +124,10 @@ export default function Home() {
 
     console.log("userSearchCriteria->", userSearchCriteria);
     getServicesArray(userSearchCriteria);
+    history.push("/results");
   };
 
   //create function which takes postcode and send postreq to API to convert to lat and long and sets state with result
-
   const getLongLat = (event) => {
     //first remove any spaces if there are any
     const postcodeNoSpace = removeFirstSpace(postCode);
@@ -135,42 +139,6 @@ export default function Home() {
       .get(apiURL)
       .then((response) => {
         submitRequestToBackend(event, response);
-        // const form = event.target;
-        // const availabilityArray = [
-        //   form.monAm.checked,
-        //   form.monPm.checked,
-        //   form.monEve.checked,
-        //   form.tueAm.checked,
-        //   form.tuePm.checked,
-        //   form.tueEve.checked,
-        //   form.wedAm.checked,
-        //   form.wedPm.checked,
-        //   form.wedEve.checked,
-        //   form.thuAm.checked,
-        //   form.thuPm.checked,
-        //   form.thuEve.checked,
-        //   form.friAm.checked,
-        //   form.friPm.checked,
-        //   form.friEve.checked,
-        //   form.satAm.checked,
-        //   form.satPm.checked,
-        //   form.satEve.checked,
-        //   form.sunAm.checked,
-        //   form.sunPm.checked,
-        //   form.sunEve.checked,
-        // ];
-        // setAvailability(availabilityArray);
-        // const userSearchCriteria = {
-        //   deliveryMethod: deliveryMethod,
-        //   location: {
-        //     long: response.data.results[0].lon,
-        //     lat: response.data.results[0].lat,
-        //   },
-        //   maxRad: Number(maxRad),
-        //   availability: availabilityArray,
-        // };
-        // console.log("userSearchCriteria->", userSearchCriteria);
-        // getServicesArray(userSearchCriteria);
       })
       .catch((error) => {
         alert(error);
@@ -223,8 +191,6 @@ export default function Home() {
             Find a mental health service that's right for you
           </h1>
           <form className="home__form" onSubmit={handleSubmit}>
-            {/* radio buttons below */}
-
             <label className="home__form-input-label" htmlFor="deliveryMethod">
               How would you like to recieve support?
             </label>
@@ -306,7 +272,6 @@ export default function Home() {
                     name="maxRad"
                     className="home__dropdown-input"
                     id="maxRad"
-                    // value="5"
                     selected="selected"
                     onChange={(event) => setMaxRad(event.target.value)}
                   >
@@ -391,7 +356,6 @@ export default function Home() {
                         name="availability"
                         value="monAm"
                         defaultChecked
-                        // onChange={(event) => setTest(event.target.checked)}
                       />
                     </div>
                     <div className="availability__col">

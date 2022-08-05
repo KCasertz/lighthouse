@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, RouterProps } from "react-router-dom";
 import "./App.scss";
 
 // import each component here
@@ -8,26 +8,29 @@ import Results from "./Pages/Results/Results";
 import ServiceDetails from "./Pages/ServiceDetails/ServiceDetails";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
+import FourOhFour from "./Pages/FourOhFour/FourOhFour";
+import { useState } from "react";
 
 function App() {
+  const [results, setResults] = useState([]);
+
   return (
     <>
       <Header />
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/results" exact component={Results} />
+        <Route path="/" exact render={() => <Home setResults={setResults} />} />
+        <Route
+          path="/results"
+          render={(routerProps) => (
+            <Results {...routerProps} results={results} />
+          )}
+        />
         <Route
           path="/services/:service"
           exact
           render={() => <ServiceDetails />}
         />
-        {/* <Route
-          path="/"
-          exact
-          render={(routerProps) => <ComponentName {...routerProps} />}
-        /> */}
-        {/* <Route path="/404" component={FourOhFour} /> */}
-        {/* <Redirect to="/404" /> */}
+        <Redirect to="/404" component={FourOhFour} />
       </Switch>
       <Footer />
     </>
