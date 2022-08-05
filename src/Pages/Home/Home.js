@@ -1,18 +1,20 @@
-import React from "react";
-import "./Home.scss";
-import lighthouseAnimation from "../../assets/lighthouseIconOne.gif";
-import heroImage from "../../assets/images/lighthouseHero.jpg";
-// import { RadioGroup, Radio } from "react-radio-group";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import API_URL from "../../api/api";
 import axios from "axios";
 import BACKEND_PORT from "../../api/api";
 import { useHistory } from "react-router-dom";
+import React from "react";
+import "./Home.scss";
+import lighthouseAnimation from "../../assets/lighthouseIconOne.gif";
+import heroImage from "../../assets/images/lighthouseHero.jpg";
+const helpers = require("../../helpers/helpers.js");
+// import { RadioGroup, Radio } from "react-radio-group";
+
 // import { Link, useNavigate } from "react-router-dom";
 
 export default function Home(props) {
   const history = useHistory();
-  // const navigate = useNavigate();
+
   // initialise state (default empty) for each input field
   const [deliveryMethod, setDeliveryMethod] = useState("");
   const [maxRad, setMaxRad] = useState(5);
@@ -20,11 +22,10 @@ export default function Home(props) {
   const [availability, setAvailability] = useState(["test", "test"]);
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
-  // const [results, setResults] = useState([]);
   const [useCurrentLocation, setUseCurrentLocation] = useState(false);
   const [isAvailAnytime, setIsAvailAnytime] = useState(true);
 
-  const getServicesArray = async (userSearchCriteria) => {
+  const getResults = async (userSearchCriteria) => {
     console.log(
       "userSearchCrit inside getservicearray func: ",
       userSearchCriteria
@@ -37,7 +38,7 @@ export default function Home(props) {
       props.setResults(response.data);
       console.log("Data->", response.data);
     } catch (error) {
-      console.log("getServicesArray->", error);
+      console.log(error);
     }
   };
 
@@ -50,7 +51,7 @@ export default function Home(props) {
     return string.replace(" ", "");
   };
 
-  const submitRequestToBackend = (event, response) => {
+  const compileSearchObject = (event, response) => {
     const form = event.target;
     let availabilityArray = [];
     isAvailAnytime
@@ -107,7 +108,6 @@ export default function Home(props) {
     if (deliveryMethod !== "ftf") {
       userSearchCriteria = {
         deliveryMethod: deliveryMethod,
-        maxRad: Number(maxRad),
         availability: availabilityArray,
       };
     } else {
@@ -123,7 +123,11 @@ export default function Home(props) {
     }
 
     console.log("userSearchCriteria->", userSearchCriteria);
-    getServicesArray(userSearchCriteria);
+
+    //make request to backend
+    getResults(userSearchCriteria);
+
+    //redirect to results page
     history.push("/results");
   };
 
@@ -138,7 +142,7 @@ export default function Home(props) {
     axios
       .get(apiURL)
       .then((response) => {
-        submitRequestToBackend(event, response);
+        compileSearchObject(event, response);
       })
       .catch((error) => {
         alert(error);
@@ -149,7 +153,7 @@ export default function Home(props) {
     event.preventDefault();
     //add validation here then send off to relevant function based on current location
     deliveryMethod !== "ftf" || useCurrentLocation
-      ? submitRequestToBackend(event)
+      ? compileSearchObject(event)
       : getLongLat(event);
   };
 
