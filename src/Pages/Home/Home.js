@@ -69,7 +69,7 @@ export default function Home() {
             lat: response.data.results[0].lat,
           },
           maxRad: Number(maxRad),
-          availability: [availabilityArray],
+          availability: availabilityArray,
         };
         console.log("userSearchCriteria->", userSearchCriteria);
         getServicesArray(userSearchCriteria);
@@ -85,7 +85,7 @@ export default function Home() {
       userSearchCriteria
     );
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         `http://localhost:8080/services/filtered`,
         userSearchCriteria
       );
@@ -139,6 +139,13 @@ export default function Home() {
     // };
     // console.log("userSearchCriteria->", userSearchCriteria);
     // getServicesArray(userSearchCriteria);
+  };
+
+  const clickHandler = (event) => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setLat(position.coords.latitude);
+      setLong(position.coords.longitude);
+    });
   };
 
   return (
@@ -215,7 +222,9 @@ export default function Home() {
                 name="postcode"
                 onChange={(event) => setPostcode(event.target.value)}
               />
-              <button>Use current Location</button>
+              <button type="button" onClick={clickHandler}>
+                Use current Location
+              </button>
               <div className="home__dropdown-container">
                 <select
                   name="maxRad"
