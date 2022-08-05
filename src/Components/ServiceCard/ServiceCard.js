@@ -8,7 +8,11 @@ const ServiceCard = (props) => {
   const service = props.serviceDetails;
 
   const getAvg = (arr) => {
-    const result = Math.ceil(arr.reduce((a, b) => a + b, 0) / arr.length);
+    return Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 10) / 10;
+  };
+
+  const getAvgWait = (arr) => {
+    const result = Math.ceil(getAvg(arr));
     if (result === 0) {
       return `Available now`;
     } else if (result === 1) {
@@ -20,15 +24,19 @@ const ServiceCard = (props) => {
 
   return (
     <article className="card">
-      {/* <img src={service.imageUrl} alt="service logo" className="card__image" />
-    <h2 className="card__heading">{{service.name}}</h2>
-    <ReactStars
-    count={_.sum(service.ratings)}
-    // onChange={ratingChanged}
-    size={10}
-    activeColor="#ffd700"
-  /> */}
-      <p className="card__title">{service.name}</p>
+      <div className="card__header">
+        <p className="card__title">{service.name}</p>
+        <div className="card__rating-container">
+          <ReactStars
+            count={5}
+            value={getAvg(service.ratings)}
+            // onChange={ratingChanged}
+            size={20}
+            activeColor="#EEA807"
+          />
+          <p className="card__rating-text">{getAvg(service.ratings)}</p>
+        </div>
+      </div>
       <div className="card__top-container">
         <div className="card__top-left-container">
           <div className="card__image-container">
@@ -42,7 +50,7 @@ const ServiceCard = (props) => {
         <div className="card__top-right-container">
           <div className="card__wait-container">
             <img src={waitList} alt="" className="card__wait-icon" />
-            <p className="card__wait-text">{getAvg(service.waitingTime)}</p>
+            <p className="card__wait-text">{getAvgWait(service.waitingTime)}</p>
           </div>
         </div>
       </div>
