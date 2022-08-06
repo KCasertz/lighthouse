@@ -33,4 +33,17 @@
       }
     }
   }
+
+  &__text {
+    margin: 2.4rem 1.6rem;
+    background-color: white;
+    padding: 1.6rem;
+    //   border: 1px solid $lighthouse-dark-blue;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+      rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+  }
 }

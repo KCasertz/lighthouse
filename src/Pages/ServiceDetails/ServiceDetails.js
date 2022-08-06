@@ -24,6 +24,7 @@ const ServiceDetails = (props) => {
   const service = services.find((service) => service._id === serviceId);
   const lon = service.location.coordinates[0];
   const lat = service.location.coordinates[1];
+
   const getAvg = (arr) => {
     return Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 10) / 10;
   };

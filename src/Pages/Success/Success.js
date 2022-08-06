@@ -61,22 +61,44 @@ const Success = (props) => {
             support, please leave your email below and we will send you a link
             to share a review about the service you referred yourself to.
           </p>
-          <form className="success__email-form">
+          <form
+            className="success__email-form"
+            onSubmit={() =>
+              alert("Thank you - you will receive an email shortly")
+            }
+          >
             <input
               type="text"
               name="email"
               className="success__email"
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="Email"
+              // onChange={(event) => setEmail(event.target.value)}
+              placeholder="Please enter your email"
             />
             <button
               className="success__submit-button"
               type="button"
-              // onClick={emailClickHandler}
+              onClick={() =>
+                alert("Thank you - you will receive an email shortly")
+              }
             >
               I want to review
             </button>
           </form>
+
+          <div className="success__links">
+            <p className="success_text">
+              While you wait to hear back from your service, below are some
+              resources you may find useful:
+            </p>
+            <ul>
+              <li>resource one</li>
+              <li>resource two</li>
+              <li>resource three</li>
+            </ul>
+
+            <br />
+            <br />
+          </div>
         </div>
       </section>
     </>

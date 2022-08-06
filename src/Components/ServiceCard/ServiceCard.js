@@ -28,7 +28,10 @@ const ServiceCard = (props) => {
   return (
     <article className="card">
       <div className="card__header">
-        <p className="card__title">{service.name}</p>
+        <Link to={`/services/${serviceId}`}>
+          {" "}
+          <p className="card__title">{service.name}</p>
+        </Link>
         <div className="card__rating-container">
           <ReactStars
             count={5}

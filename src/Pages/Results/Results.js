@@ -26,10 +26,21 @@ const Results = (props) => {
           </div>
           <h1 className="results__heading">Your results</h1>
         </div>
+
+        {services.length === 0 ? (
+          <p className="results__text">
+            Sorry, there are no services that match your criteria right now.
+            Please click 'It's urgent' at the top of the page if you need
+            support right now, otherwise go back and try amending your search.
+          </p>
+        ) : (
+          <>
+            {services.map((service, i) => {
+              return <ServiceCard serviceDetails={service} key={i} />;
+            })}
+          </>
+        )}
         {/* <div>{services[0].name}</div> */}
-        {services.map((service, i) => {
-          return <ServiceCard serviceDetails={service} key={i} />;
-        })}
       </div>
     </section>
   );
