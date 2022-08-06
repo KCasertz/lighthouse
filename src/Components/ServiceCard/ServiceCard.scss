@@ -14,7 +14,7 @@ body {
   //   border: 1px solid $lighthouse-dark-blue;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  border-radius: 16px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
 
@@ -37,6 +37,19 @@ body {
     min-width: 13rem;
   }
 
+  &__more-button {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: $lighthouse-dark-blue;
+    border-radius: 0.5rem;
+    border: solid 1px $lighthouse-dark-blue;
+    padding: 0.8rem;
+    color: white;
+    margin-top: 1.6rem;
+  }
   &__rating-text {
     font-size: 1.4rem;
     margin-left: 0.5rem;

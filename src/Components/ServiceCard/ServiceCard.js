@@ -74,7 +74,11 @@ const ServiceCard = (props) => {
       <div className="card__bottom-container">
         <p className="card__summary">{service.summary}</p>
         <div className="card__ctas">
-          <Link to={`/services/${serviceId}`}>More...</Link>
+          <Link to={`/services/${serviceId}`}>
+            <div className="card__more-button">
+              Learn more and get support &#x2192;
+            </div>
+          </Link>
         </div>
       </div>
     </article>
