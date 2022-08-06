@@ -48,6 +48,10 @@ function App() {
           )}
         />
         <Route
+          path="/:serviceId/reviews"
+          render={() => <Success results={results} userSearch={userSearch} />}
+        />
+        <Route
           path="/success"
           exact
           render={() => <Success results={results} userSearch={userSearch} />}

@@ -1,9 +1,10 @@
 import "./ServiceCard.scss";
 import React from "react";
 import ReactStars from "react-rating-stars-component";
-import waitList from "../../assets/icons/wait-icon.svg";
-import lgbtqFlag from "../../assets/icons/lgbtq.avif";
+import waitList from "../../assets/icons/wait-icon.png";
+import lgbt from "../../assets/icons/lgbt.png";
 import { Link } from "react-router-dom";
+import accessible from "../../assets/icons/accessible.png";
 
 const ServiceCard = (props) => {
   const service = props.serviceDetails;
@@ -16,7 +17,7 @@ const ServiceCard = (props) => {
   const getAvgWait = (arr) => {
     const result = Math.ceil(getAvg(arr));
     if (result === 0) {
-      return `Available now`;
+      return `Under a month's wait`;
     } else if (result === 1) {
       return `${result} month`;
     } else {
@@ -54,13 +55,19 @@ const ServiceCard = (props) => {
             <img src={waitList} alt="" className="card__wait-icon" />
             <p className="card__wait-text">{getAvgWait(service.waitingTime)}</p>
           </div>
-          <div className={service.lgbtq ? "card__queer" : "card__not-queer"}>
-            <img
-              src={lgbtqFlag}
-              alt="lgbtq+ flag"
-              className="card__lgbtq-flag"
-            />
+          <div className={service.lgbtq ? "card__lgbt" : "card__not-lgbt"}>
+            <img src={lgbt} alt="lgbtq+ flag" className="card__lgbtq-flag" />
             <p className="card__icon-text">LGBTQ+</p>
+          </div>
+          <div
+            className={service.accessible ? "card__access" : "card__no-access"}
+          >
+            <img
+              src={accessible}
+              alt="accessible icon"
+              className="card__access-icon"
+            />
+            <p className="card__icon-text">Wheelchair accessible</p>
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@
   }
   &__description {
     font-size: 2.1rem;
-    margin: 1.6rem 0;
+    margin-bottom: 1.6rem;
   }
   &__map-container {
     width: 100%;
@@ -58,7 +58,7 @@
   }
 
   &__heading {
-    white-space: nowrap;
+    margin-bottom: 0.8rem;
   }
   //   &__header {
   //     display: flex;
@@ -95,11 +95,22 @@
     height: auto;
   }
 
-  &__rating-container {
+  &__rating-container-top {
     display: flex;
     flex-direction: row;
     align-items: center;
     min-width: 13rem;
+  }
+
+  &__rating-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__rating-container-bottom {
+    text-align: right;
+    text-decoration: underline;
   }
 
   &__rating-text {
@@ -110,47 +121,65 @@
     font-size: 1.4rem;
   }
 
-  &__wait-icon {
-    height: 2rem;
+  &__key-icon {
+    height: 3rem;
     margin-right: 1rem;
   }
 
   &__wait-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
     // margin: 1.6rem 1.6rem 1.6rem;
   }
 
-  &__queer {
-    height: fit-content;
-    width: 8rem;
-
-    font-size: 1.6rem;
+  &__lgbt {
     display: flex;
     flex-direction: row;
-    // margin-left: 1.6rem;
-    // margin: 1.6rem 0;
+    align-items: center;
   }
 
-  &__lgbtq-flag {
-    height: 2rem;
-    margin-right: 0.5rem;
-  }
-
-  &__not-queer {
+  &__not-lgbt {
     display: none;
   }
 
-  &__key-info-container {
+  &__access {
     display: flex;
     flex-direction: row;
-    gap: 1.6rem;
+    align-items: center;
+  }
+
+  &__no-access {
+    display: none;
+  }
+  // &__lgbtq-flag {
+  //   height: 1.5rem;
+  //   margin-right: 0.5rem;
+  // }
+
+  &__key-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    border-radius: 1rem;
+  }
+
+  &__key-info-top-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__key-info-bottom-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   &__key-info-right-container {
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    // gap: 1.6rem;
   }
 
   &__contact-container {
@@ -159,14 +188,28 @@
     align-items: center;
   }
 
-  &__contact-icon {
-    width: 5rem;
-  }
-  &__contact-text {
+  &__key-text {
     font-size: 1.6rem;
-    margin-left: 1.6rem;
+    margin-left: 0.8rem;
+  }
+  &__solo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  &__not-solo {
+    display: none;
   }
 
+  &__group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__not-group {
+    display: none;
+  }
   &__refer-container {
     display: flex;
     flex-direction: row;
