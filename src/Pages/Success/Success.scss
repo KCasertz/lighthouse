@@ -1,0 +1,59 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/typography" as *;
+
+.success {
+  &__main-container {
+    margin: 1.6rem;
+    padding: 0;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 0.8rem;
+    //   padding: 1.6rem;
+    position: relative;
+    top: -6rem;
+    height: fit-content;
+    border: solid 1px lightgray;
+    // box-shadow: 0px 2px 5px 0px #13182c1a;
+    z-index: 1;
+    background-color: white;
+    padding: 1.6rem;
+  }
+  &__back-button {
+    height: 3rem;
+  }
+  &__header-top {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    align-items: center;
+    margin: 1.6rem;
+  }
+
+  &__back-icon {
+    font-size: 1.8rem;
+    text-decoration: underline;
+
+    @include aboveMobile {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__hero {
+    object-fit: contain;
+    height: auto;
+    object-position: top;
+    margin-top: -8rem;
+    width: 100%;
+  }
+
+  &__hero-container {
+    width: 100%;
+    overflow: hidden;
+    max-height: 30vh;
+  }
+}

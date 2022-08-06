@@ -243,7 +243,7 @@ const ServiceDetails = (props) => {
                 className="service__refer-container"
                 href={service.bookingLink}
                 target="_blank"
-                rel="noopener noreferrer"
+                onClick={sendToSuccess}
               >
                 <img
                   src={refer}
