@@ -49,6 +49,10 @@ const ServiceDetails = (props) => {
   return (
     <section className="service">
       <div className="service__container">
+        <div className="service__header-top" onClick={() => history.goBack()}>
+          <img src={back} alt="back button" className="service__back-button" />
+          <p className="service__back-icon">Back</p>
+        </div>
         <div className="service__image-container">
           <img
             className="service__image"
@@ -59,17 +63,6 @@ const ServiceDetails = (props) => {
 
         <div className="service__main-container">
           <div className="service__header-container">
-            <div
-              className="service__header-top"
-              onClick={() => history.goBack()}
-            >
-              <img
-                src={back}
-                alt="back button"
-                className="service__back-button"
-              />
-              <p className="service__back-icon">Back</p>
-            </div>
             <div className="service__header-bottom">
               <h1 className="service__heading">{service.name}</h1>
               <div className="service__rating-container">
@@ -173,30 +166,57 @@ const ServiceDetails = (props) => {
               </div>
               <div className="service__key-info-right-container">
                 <div className="service__contact-info-container">
-                  <div className="service__contact-container">
-                    <img
-                      src={phone}
-                      alt="phone icon"
-                      className="service__key-icon"
-                    />
-                    <p className="service__key-text">{service.phone}</p>
-                  </div>
-                  <div className="service__contact-container">
-                    <img
-                      src={email}
-                      alt="email icon"
-                      className="service__key-icon"
-                    />
-                    <p className="service__key-text">{service.email}</p>
-                  </div>
-                  <div className="service__contact-container">
-                    <img
-                      src={website}
-                      alt="website icon"
-                      className="service__key-icon"
-                    />
-                    <p className="service__key-text">{service.website}</p>
-                  </div>
+                  <ExternalLink
+                    className="service__contact-link"
+                    href={`tel:${service.phone}`}
+                    target="_blank"
+                  >
+                    <div className="service__contact-container">
+                      <img
+                        src={phone}
+                        alt="phone icon"
+                        className="service__key-icon"
+                      />
+                      <p className="service__key-text service__key-text--underline">
+                        {service.phone}
+                      </p>
+                    </div>
+                  </ExternalLink>
+                  <ExternalLink
+                    className="service__contact-link"
+                    href={`mailto:${service.email}?subject="Enquiring about support"`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="service__contact-container">
+                      <img
+                        src={email}
+                        alt="email icon"
+                        className="service__key-icon"
+                      />
+                      <p className="service__key-text service__key-text--underline">
+                        {service.email}
+                      </p>
+                    </div>
+                  </ExternalLink>
+                  <ExternalLink
+                    className="service__contact-link"
+                    href={service.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {" "}
+                    <div className="service__contact-container">
+                      <img
+                        src={website}
+                        alt="website icon"
+                        className="service__key-icon"
+                      />
+                      <p className="service__key-text service__key-text--underline">
+                        {service.website}
+                      </p>
+                    </div>
+                  </ExternalLink>
                 </div>
               </div>
             </div>

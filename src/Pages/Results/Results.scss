@@ -1,6 +1,36 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/typography" as *;
+
 .results {
   &__heading {
     margin: 1.6rem;
     font-size: 2.4rem;
+  }
+
+  &__header-top {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    align-items: center;
+    margin: 1.6rem;
+  }
+
+  &__back-button {
+    height: 3rem;
+  }
+
+  &__back-icon {
+    font-size: 1.8rem;
+    text-decoration: underline;
+
+    @include aboveMobile {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
   }
 }
