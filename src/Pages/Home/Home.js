@@ -256,7 +256,9 @@ export default function Home(props) {
                     </>
                   ) : (
                     <>
-                      <p className="home__form-text ">Using current location</p>
+                      <p className="home__form-text home__form-text--current-location">
+                        (Using current location)
+                      </p>
                       <button
                         type="button"
                         onClick={postcodeClickHandler}
@@ -270,7 +272,7 @@ export default function Home(props) {
 
                 <div className="home__dropdown-container">
                   <label className="home__dropdown-text">
-                    I'd be able to travel up to
+                    I can travel up to
                   </label>
                   <select
                     name="maxRad"
@@ -293,6 +295,11 @@ export default function Home(props) {
             )}
             <label className="home__form-input-label" htmlFor="availabilityAll">
               When are you available to receive support?
+            </label>
+            <label
+              className="home__form-input-label"
+              htmlFor="availableAnytime"
+            >
               <input
                 id="availableAnytime"
                 type="radio"
@@ -304,7 +311,7 @@ export default function Home(props) {
               />
               I can do any day, any time
             </label>
-            <label htmlFor="ftf">
+            <label htmlFor="notAvailableAnytime">
               <input
                 id="notAvailableAnytime"
                 type="radio"
@@ -320,10 +327,9 @@ export default function Home(props) {
               <></>
             ) : (
               <>
-                <label>
-                  Select your availability below. AM is 8am to 12 midday. PM is
-                  12 midday to 5pm. Eve is 5pm to 8pm.
-                </label>
+                <br /> <br />
+                <label>Select your availability below.</label>
+                <br /> <br />
                 <div className="home__availability-container">
                   <div className="availability__row availability__row--heading ">
                     <div className="availability__col availability__col--blank-space"></div>

@@ -26,9 +26,10 @@ function App() {
           )}
         />
         <Route
-          path="/services/:service"
-          exact
-          render={() => <ServiceDetails />}
+          path="/services/:serviceId"
+          render={(routerProps) => (
+            <ServiceDetails {...routerProps} results={results} />
+          )}
         />
         <Redirect to="/404" component={FourOhFour} />
       </Switch>

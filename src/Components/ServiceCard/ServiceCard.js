@@ -3,10 +3,12 @@ import React from "react";
 import ReactStars from "react-rating-stars-component";
 import waitList from "../../assets/icons/wait-icon.svg";
 import lgbtqFlag from "../../assets/icons/lgbtq.avif";
+import { Link } from "react-router-dom";
 var _ = require("lodash/core");
 
 const ServiceCard = (props) => {
   const service = props.serviceDetails;
+  const serviceId = service._id;
 
   const getAvg = (arr) => {
     return Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 10) / 10;
@@ -65,6 +67,9 @@ const ServiceCard = (props) => {
       </div>
       <div className="card__bottom-container">
         <p className="card__summary">{service.summary}</p>
+        <div className="card__ctas">
+          <Link to={`/services/${serviceId}`}>More...</Link>
+        </div>
       </div>
     </article>
   );
