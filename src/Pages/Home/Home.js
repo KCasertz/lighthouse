@@ -122,6 +122,8 @@ export default function Home(props) {
       };
     }
 
+    props.setUserSearch(userSearchCriteria);
+
     console.log("userSearchCriteria->", userSearchCriteria);
 
     //make request to backend

@@ -13,22 +13,37 @@ import { useState } from "react";
 
 function App() {
   const [results, setResults] = useState([]);
+  const [userSearch, setUserSearch] = useState({});
 
   return (
     <>
       <Header />
       <Switch>
-        <Route path="/" exact render={() => <Home setResults={setResults} />} />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <Home setResults={setResults} setUserSearch={setUserSearch} />
+          )}
+        />
         <Route
           path="/results"
           render={(routerProps) => (
-            <Results {...routerProps} results={results} />
+            <Results
+              {...routerProps}
+              results={results}
+              userSearch={userSearch}
+            />
           )}
         />
         <Route
           path="/services/:serviceId"
           render={(routerProps) => (
-            <ServiceDetails {...routerProps} results={results} />
+            <ServiceDetails
+              {...routerProps}
+              results={results}
+              userSearch={userSearch}
+            />
           )}
         />
         <Redirect to="/404" component={FourOhFour} />

@@ -1,5 +1,6 @@
 import "./ServiceDetails.scss";
 
+import AvailabilityTable from "../../Components/AvailabilityTable/AvailabilityTable";
 import React from "react";
 import ReactStars from "react-rating-stars-component";
 import waitList from "../../assets/icons/wait-icon.svg";
@@ -7,10 +8,12 @@ import lgbtqFlag from "../../assets/icons/lgbtq.avif";
 import { Link } from "react-router-dom";
 
 const ServiceDetails = (props) => {
+  console.log("service details props", props);
   const services = props.results.results;
   const serviceId = props.match.params.serviceId;
   const service = services.find((service) => service._id === serviceId);
-
+  const lon = service.location.coordinates[0];
+  const lat = service.location.coordinates[1];
   const getAvg = (arr) => {
     return Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 10) / 10;
   };
@@ -68,9 +71,15 @@ const ServiceDetails = (props) => {
           </div>
           <div className="service__map-container">
             <img
-              src={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/url-https%3A%2F%2Fi.postimg.cc%2FqMQKYMz7%2Fmarker.png(0.02392,51.53016)/0.02392,51.53016,15/500x300?access_token=pk.eyJ1Ijoia2F0aWVjYXNlcnRhIiwiYSI6ImNsNmhwdWltbDI3NGMzanFsYno3cHcycHUifQ.PrVJdnawuI2chSsYKoZ7qQ`}
+              src={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/url-https%3A%2F%2Fi.postimg.cc%2FqMQKYMz7%2Fmarker.png(${lon},${lat})/${lon},${lat},15/500x300?access_token=pk.eyJ1Ijoia2F0aWVjYXNlcnRhIiwiYSI6ImNsNmhwdWltbDI3NGMzanFsYno3cHcycHUifQ.PrVJdnawuI2chSsYKoZ7qQ`}
               alt="map image"
               className="service__map"
+            />
+          </div>
+          <div className="service__availability-mapping">
+            <AvailabilityTable
+              service={service}
+              userSearch={props.userSearch}
             />
           </div>
         </div>
