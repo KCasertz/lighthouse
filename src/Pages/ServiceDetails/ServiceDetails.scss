@@ -16,6 +16,36 @@
     display: flex;
     flex-direction: column;
   }
+  &__small-header {
+    color: gray;
+  }
+  &__header-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  &__header-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__header-top {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  &__key-info-container {
+    border: solid 1px lightgray;
+    padding: 1.6rem;
+    margin: 1.6rem 0;
+  }
+  &__description {
+    font-size: 2.1rem;
+    margin: 1.6rem 0;
+  }
   &__map-container {
     width: 100%;
   }
@@ -27,6 +57,9 @@
     padding: 1.6rem;
   }
 
+  &__heading {
+    white-space: nowrap;
+  }
   //   &__header {
   //     display: flex;
   //     flex-direction: row;
@@ -85,7 +118,7 @@
   &__wait-container {
     display: flex;
     flex-direction: row;
-    margin: 1.6rem 1.6rem 1.6rem;
+    // margin: 1.6rem 1.6rem 1.6rem;
   }
 
   &__queer {
@@ -95,7 +128,8 @@
     font-size: 1.6rem;
     display: flex;
     flex-direction: row;
-    margin-left: 1.6rem;
+    // margin-left: 1.6rem;
+    // margin: 1.6rem 0;
   }
 
   &__lgbtq-flag {
@@ -105,5 +139,104 @@
 
   &__not-queer {
     display: none;
+  }
+
+  &__key-info-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1.6rem;
+  }
+
+  &__key-info-right-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  &__contact-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__contact-icon {
+    width: 5rem;
+  }
+  &__contact-text {
+    font-size: 1.6rem;
+    margin-left: 1.6rem;
+  }
+
+  &__refer-container {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    background-color: $lighthouse-purple;
+    border-radius: 0.5rem;
+    border: solid 1px $lighthouse-purple;
+    padding: 0.8rem;
+  }
+
+  &__call-container {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    border: solid 1px $lighthouse-purple;
+    padding: 0.8rem;
+  }
+  &__cta-text {
+    font-size: 2.4rem;
+
+    &--refer {
+      color: white;
+    }
+  }
+
+  &__back-button {
+    height: 3rem;
+  }
+
+  &__back-icon {
+    font-size: 1.8rem;
+    text-decoration: underline;
+
+    @include aboveMobile {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+  &__cta-icon {
+    height: 3rem;
+    margin: 0 0.8rem;
+  }
+  &__ctas-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: white;
+    padding: 0.8rem;
+  }
+
+  &__bottom-cta-nav {
+    position: fixed;
+    // top: 0;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+    margin: 0 -1.6rem;
+  }
+
+  &__helper-div {
+    height: 8rem;
   }
 }

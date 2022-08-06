@@ -4,7 +4,6 @@ import ReactStars from "react-rating-stars-component";
 import waitList from "../../assets/icons/wait-icon.svg";
 import lgbtqFlag from "../../assets/icons/lgbtq.avif";
 import { Link } from "react-router-dom";
-var _ = require("lodash/core");
 
 const ServiceCard = (props) => {
   const service = props.serviceDetails;

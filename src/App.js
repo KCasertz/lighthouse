@@ -10,6 +10,7 @@ import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import FourOhFour from "./Pages/FourOhFour/FourOhFour";
 import { useState } from "react";
+import Success from "./Pages/Success/Success";
 
 function App() {
   const [results, setResults] = useState([]);
@@ -45,6 +46,11 @@ function App() {
               userSearch={userSearch}
             />
           )}
+        />
+        <Route
+          path="/success"
+          exact
+          render={() => <Success results={results} userSearch={userSearch} />}
         />
         <Redirect to="/404" component={FourOhFour} />
       </Switch>
