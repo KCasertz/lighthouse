@@ -32,7 +32,8 @@ const ServiceDetails = (props) => {
 
   const sendToSuccess = (event) => {
     console.log("testing if I could do something on referral too");
-    history.push("/success");
+    let string = "/" + serviceId + "/success";
+    history.push(string);
   };
 
   const getAvgWait = (arr) => {

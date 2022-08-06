@@ -52,10 +52,20 @@ function App() {
           render={() => <Success results={results} userSearch={userSearch} />}
         />
         <Route
-          path="/success"
+          path="/:serviceId/success"
+          render={(routerProps) => (
+            <Success
+              {...routerProps}
+              results={results}
+              userSearch={userSearch}
+            />
+          )}
+        />
+        {/* <Route
+          path="/:serviceId/success"
           exact
           render={() => <Success results={results} userSearch={userSearch} />}
-        />
+        /> */}
         <Redirect to="/404" component={FourOhFour} />
       </Switch>
       <Footer />
