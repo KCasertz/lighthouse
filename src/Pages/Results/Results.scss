@@ -5,6 +5,52 @@
 @use "../../styles/partials/typography" as *;
 
 .results {
+  &__container {
+    margin: 0 0.5rem;
+    background-color: $lighthouse-dark-blue;
+    padding: 2.4rem 0;
+  }
+
+  &__paid-container {
+    background-color: $lighthouse-yellow;
+    padding: 2.4rem 0;
+    margin: 0 0.5rem;
+  }
+
+  &__toggle-tabs-container {
+    margin: 2.4rem 0.5rem 0 0.5rem;
+    background-color: white;
+    // padding: 1.6rem;
+    //   border: 1px solid $lighthouse-dark-blue;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+      rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    border-top-right-radius: 0.8rem;
+    border-top-left-radius: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    // background-color: $lighthouse-yellow;
+  }
+
+  &__toggle-tab {
+    color: white;
+    width: 50%;
+    text-align: center;
+    // background-color: $lighthouse-yellow;
+    padding: 1.6rem 0;
+
+    &--paid {
+      background-color: $lighthouse-yellow;
+      color: $lighthouse-dark-blue;
+      border-top-right-radius: 0.8rem;
+      border-top-left-radius: 0.8rem;
+    }
+
+    &--free {
+      background-color: $lighthouse-dark-blue;
+      border-top-right-radius: 0.8rem;
+      border-top-left-radius: 0.8rem;
+    }
+  }
   &__heading {
     margin: 1.6rem;
     font-size: 2.4rem;
@@ -33,7 +79,16 @@
       }
     }
   }
+  &__loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
+  &__loading-icon {
+    height: 100%;
+  }
   &__text {
     margin: 2.4rem 1.6rem;
     background-color: white;

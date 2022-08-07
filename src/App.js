@@ -16,6 +16,7 @@ function App() {
   const [results, setResults] = useState([]);
   const [therapists, setTherapists] = useState([]);
   const [userSearch, setUserSearch] = useState({});
+  const [isFree, setIsFree] = useState(true);
 
   return (
     <>
@@ -40,16 +41,20 @@ function App() {
               results={results}
               therapists={therapists}
               userSearch={userSearch}
+              setIsFree={setIsFree}
+              isFree={isFree}
             />
           )}
         />
         <Route
-          path="/services/:serviceId"
+          path="/services/:currentId"
           render={(routerProps) => (
             <ServiceDetails
               {...routerProps}
               results={results}
               userSearch={userSearch}
+              therapists={therapists}
+              isFree={isFree}
             />
           )}
         />

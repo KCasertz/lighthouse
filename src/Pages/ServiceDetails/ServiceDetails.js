@@ -19,10 +19,20 @@ import lgbt from "../../assets/icons/lgbt.png";
 
 const ServiceDetails = (props) => {
   console.log("service details props", props);
-  const services = props.results.results;
-  const serviceId = props.match.params.serviceId;
-  const service = services.find((service) => service._id === serviceId);
+  const isFree = props.isFree;
+  const services = props.results.results; //array
+  const therapists = props.therapists.results; //array
+  const currentId = props.match.params.currentId; //string
+  let service = {};
+  isFree
+    ? (service = services.find((service) => service._id === currentId))
+    : (service = therapists.find((therapist) => therapist._id === currentId));
   console.log("service found is -->", service);
+
+  // (services.find((service) => service._id === currentId));
+  // console.log("service found is -->", service);
+  // if (!service) {
+  // }
   const lon = service.location.coordinates[0];
   const lat = service.location.coordinates[1];
 
@@ -34,7 +44,7 @@ const ServiceDetails = (props) => {
 
   const sendToSuccess = (event) => {
     console.log("testing if I could do something on referral too");
-    let string = "/" + serviceId + "/success";
+    let string = "/" + currentId + "/success";
     history.push(string);
   };
 
@@ -77,7 +87,7 @@ const ServiceDetails = (props) => {
               <h1 className="service__heading">{service.name}</h1>
               <div className="service__rating-container">
                 <div className="service__rating-container-top">
-                  <Link to={`/${serviceId}/reviews`}>
+                  <Link to={`/${currentId}/reviews`}>
                     {" "}
                     <ReactStars
                       count={5}
@@ -87,7 +97,7 @@ const ServiceDetails = (props) => {
                       activeColor="#EEA807"
                     />
                   </Link>
-                  <Link to={`/${serviceId}/reviews`}>
+                  <Link to={`/${currentId}/reviews`}>
                     {" "}
                     <p className="service__rating-text">
                       {getAvg(service.ratings)}
@@ -96,7 +106,7 @@ const ServiceDetails = (props) => {
                 </div>
 
                 <div className="service__rating-container-bottom">
-                  <Link to={`/${serviceId}/reviews`}>
+                  <Link to={`/${currentId}/reviews`}>
                     {" "}
                     <p className="service__reviews-link">Read reviews</p>
                   </Link>
