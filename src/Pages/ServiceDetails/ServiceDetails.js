@@ -16,13 +16,17 @@ import onetoone from "../../assets/icons/onetoone.png";
 import accessible from "../../assets/icons/accessible.png";
 import group from "../../assets/icons/group.png";
 import lgbt from "../../assets/icons/lgbt.png";
+import tick from "../../assets/icons/tick.png";
+// import { useState } from "react";
 
 const ServiceDetails = (props) => {
+  // const [discountedPrice, setDiscountedPrice] = useState();
   console.log("service details props", props);
   const isFree = props.isFree;
   const services = props.results.results; //array
   const therapists = props.therapists.results; //array
   const currentId = props.match.params.currentId; //string
+
   let service = {};
   isFree
     ? (service = services.find((service) => service._id === currentId))
@@ -63,6 +67,14 @@ const ServiceDetails = (props) => {
     navigator.clipboard.writeText("Did this work?");
   };
 
+  // const calculateCost = (event) => {
+  //   if (event.target.value < 20000) {
+  //     setDiscountedPrice(service.pricePerHour * 0.5);
+  //   } else if (event.target.value < 30000) {
+  //     setDiscountedPrice(service.pricePerHour * 0.75);
+  //   }
+  // };
+
   return (
     <section className="service">
       <div className="service__container">
@@ -79,42 +91,83 @@ const ServiceDetails = (props) => {
             src={`${service.imageUrl}`}
             alt="service logo"
           />
+          <div className="service__wait-container service__image-overlay">
+            <img src={waitList} alt="" className="service__wait-icon" />
+            <p className="service__wait-text">
+              {getAvgWait(service.waitingTime)}
+            </p>
+          </div>
+
+          <div className="service__header-bottom">
+            <h1 className="service__heading">{service.name}</h1>
+            <div className="service__rating-container">
+              <div className="service__rating-container-top">
+                <Link to={`/${currentId}/reviews`}>
+                  {" "}
+                  <ReactStars
+                    count={5}
+                    value={getAvg(service.ratings)}
+                    // onChange={ratingChanged}
+                    size={20}
+                    activeColor="#EEA807"
+                  />
+                </Link>
+                <Link to={`/${currentId}/reviews`}>
+                  {" "}
+                  <p className="service__rating-text">
+                    {getAvg(service.ratings)}
+                  </p>
+                </Link>
+              </div>
+
+              <div className="service__rating-container-bottom">
+                <Link to={`/${currentId}/reviews`}>
+                  {" "}
+                  <p className="service__reviews-link">Read reviews</p>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="service__main-container">
           <div className="service__header-container">
-            <div className="service__header-bottom">
-              <h1 className="service__heading">{service.name}</h1>
-              <div className="service__rating-container">
-                <div className="service__rating-container-top">
-                  <Link to={`/${currentId}/reviews`}>
-                    {" "}
-                    <ReactStars
-                      count={5}
-                      value={getAvg(service.ratings)}
-                      // onChange={ratingChanged}
-                      size={20}
-                      activeColor="#EEA807"
-                    />
-                  </Link>
-                  <Link to={`/${currentId}/reviews`}>
-                    {" "}
-                    <p className="service__rating-text">
-                      {getAvg(service.ratings)}
-                    </p>
-                  </Link>
-                </div>
-
-                <div className="service__rating-container-bottom">
-                  <Link to={`/${currentId}/reviews`}>
-                    {" "}
-                    <p className="service__reviews-link">Read reviews</p>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
             {/* key info Below */}
+
+            {service.pricePerHour ? (
+              <>
+                <div className="service__price-container">
+                  <div className="service__price-left-container">
+                    <p className="service__price">
+                      From £{service.pricePerHour} per hour
+                    </p>
+
+                    <p className="service__scale">
+                      <img
+                        src={tick}
+                        alt="sliding scale"
+                        className="service__tick-icon"
+                      />{" "}
+                      Offers sliding scale
+                    </p>
+                    {/* <form
+                      className="service__calculator"
+                      onSubmit={(event) => calculateCost}
+                    >
+                      <input type="number" className="service__salary" />
+                      <button type="submit">calculate</button>
+                    </form>
+                  </div>
+                  <div className="service__right-container">
+                    <p className="service__calc-cost">
+                      You'd pay {discountedPrice} per hour
+                    </p> */}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <> </>
+            )}
           </div>
           <div className="service__key-info-container">
             <div className="service__key-info-top-container">
@@ -122,12 +175,12 @@ const ServiceDetails = (props) => {
                 <p className="service__small-header">KEY INFO</p>
               </div>
               <div className="service__key-info-right-container">
-                <div className="service__wait-container">
+                {/* <div className="service__wait-container">
                   <img src={waitList} alt="" className="service__key-icon" />
                   <p className="service__key-text">
                     {getAvgWait(service.waitingTime)}
                   </p>
-                </div>
+                </div> */}
                 <div
                   className={
                     service.individual ? "service__solo" : "service__not-solo"

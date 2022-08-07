@@ -25,9 +25,16 @@
     gap: 1.6rem;
   }
   &__header-bottom {
+    color: white;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(78, 12, 211, 0.577);
+    width: 100%;
+    left: 0;
+    padding: 2.4rem;
   }
 
   &__header-top {
@@ -49,6 +56,53 @@
   }
   &__map-container {
     width: 100%;
+  }
+  &__wait-text {
+    font-size: 2rem;
+    padding: 0.5rem;
+  }
+  &__wait-icon {
+    height: 2rem;
+  }
+  &__image-overlay {
+    font-size: 3rem;
+    margin-bottom: 1.6rem;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    background-color: $lighthouse-yellow;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+  }
+  &__price-left-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
+  }
+
+  &__tick-icon {
+    height: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  &__scale {
+    font-size: 1.8rem;
+    // margin: 0 1.6rem;
+    border: solid 2px $lighthouse-purple;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+  }
+  &__price {
+    font-size: 1.8rem;
+    // margin: 0 1.6rem;
+    border: solid 2px $lighthouse-purple;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    width: fit-content;
   }
 
   &__map {
@@ -84,6 +138,7 @@
     // justify-content: center;
     // align-items: center;
     // border-radius: 5rem;
+    position: relative;
   }
   &__image {
     object-fit: cover;
@@ -117,9 +172,6 @@
   &__rating-text {
     font-size: 1.4rem;
     margin-left: 0.5rem;
-  }
-  &__wait-text {
-    font-size: 1.4rem;
   }
 
   &__key-icon {

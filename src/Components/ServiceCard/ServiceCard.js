@@ -5,6 +5,7 @@ import waitList from "../../assets/icons/wait-icon.png";
 import lgbt from "../../assets/icons/lgbt.png";
 import { Link } from "react-router-dom";
 import accessible from "../../assets/icons/accessible.png";
+import tick from "../../assets/icons/tick.png";
 
 const ServiceCard = (props) => {
   const service = props.details;
@@ -19,9 +20,9 @@ const ServiceCard = (props) => {
     if (result === 0) {
       return `Under a month's wait`;
     } else if (result === 1) {
-      return `${result} month`;
+      return `${result} month's wait`;
     } else {
-      return `${result} months`;
+      return `${result} month's wait`;
     }
   };
 
@@ -51,13 +52,38 @@ const ServiceCard = (props) => {
               src={`${service.imageUrl}`}
               alt="service logo"
             />
+
+            <div className="card__wait-container card__image-overlay">
+              <img src={waitList} alt="" className="card__wait-icon" />
+              <p className="card__wait-text">
+                {getAvgWait(service.waitingTime)}
+              </p>
+            </div>
           </div>
         </div>
+
         <div className="card__top-right-container">
-          <div className="card__wait-container">
-            <img src={waitList} alt="" className="card__wait-icon" />
-            <p className="card__wait-text">{getAvgWait(service.waitingTime)}</p>
-          </div>
+          {service.pricePerHour ? (
+            <>
+              <div className="card__price-container">
+                <p className="card__price">
+                  From £{service.pricePerHour} per hour
+                </p>
+
+                <p className="card__scale">
+                  <img
+                    src={tick}
+                    alt="sliding scale"
+                    className="card__tick-icon"
+                  />{" "}
+                  Offers sliding scale
+                </p>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+
           <div className={service.lgbtq ? "card__lgbt" : "card__not-lgbt"}>
             <img src={lgbt} alt="lgbtq+ flag" className="card__lgbtq-flag" />
             <p className="card__icon-text">LGBTQ+</p>

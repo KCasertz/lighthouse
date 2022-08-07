@@ -74,6 +74,7 @@ body {
     display: flex;
     justify-content: center;
     // align-items: center;
+    position: relative;
 
     // border-radius: 5rem;
   }
@@ -85,7 +86,7 @@ body {
   &__wait-container {
     display: flex;
     flex-direction: row;
-    margin: 1.6rem 1.6rem 1.6rem;
+    // margin: 1.6rem 1.6rem 1.6rem;
     align-items: center;
     gap: 1.2rem;
   }
@@ -93,7 +94,10 @@ body {
   &__top-container {
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+  }
+
+  &__top-right-container {
+    margin-top: 1.6rem;
   }
 
   &__access {
@@ -132,14 +136,65 @@ body {
   &__top-left-container {
     width: 100%;
   }
+  &__price-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
+  }
 
+  &__price {
+    font-size: 1.8rem;
+    // margin: 0 1.6rem;
+    border: solid 2px $lighthouse-purple;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+  }
+  &__image-overlay {
+    font-size: 1.8rem;
+    // margin: 0 1.6rem 1.6rem;
+    margin-bottom: 1.6rem;
+    // border: solid 2px $lighthouse-purple;
+    // border-radius: 1.5rem;
+    // margin-left: 0.8rem;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    // display: flex;
+    // flex-direction: row;
+    background-color: $lighthouse-yellow;
+    // position: relative;
+    // top: -4rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  &__tick-icon {
+    height: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  &__scale {
+    font-size: 1.8rem;
+    // margin: 0 1.6rem;
+    border: solid 2px $lighthouse-purple;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+  }
+  // &__pound-icon {
+  //   height: 3rem;
+  // }
   &__image {
     object-fit: cover;
-    object-position: top;
+    object-position: center;
 
     // border-radius: 1rem;
     // height: 100%;
-
+    max-height: 20rem;
     width: 100%;
   }
 

@@ -13,6 +13,25 @@ const Results = (props) => {
   console.log("therapists props; ", therapists);
   let history = useHistory();
 
+  const getAvg = (arr) => {
+    return Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 10) / 10;
+  };
+
+  //map through each array, get the avg for it's ratings and wait times, and return in a new array which includes the new avg wait and avg rating
+  const newArr = services.map((service) => {
+    service["avgWait"] = getAvg(service.waitingTime);
+    service["avgRating"] = getAvg(service.ratings);
+  });
+
+  console.log("avg: ", getAvg(services[0].waitingTime));
+  console.log("service pre new key", services[0]);
+
+  // services[0].avgWait = getAvg(services[0].waitingTime);
+
+  // console.log("service post new key", services[0]);
+
+  // console.log("avg arr: ", newArr);
+
   return !services ? (
     <>
       <div className="results__header-container">
