@@ -27,6 +27,12 @@
   &__text {
     text-align: center;
   }
+
+  &__emphasise {
+    text-transform: uppercase;
+    color: $lighthouse-dark-blue;
+    text-decoration: underline;
+  }
   &__email-form {
     display: flex;
     flex-direction: column;
@@ -36,11 +42,17 @@
     // margin-left: 2rem;
     width: 100%;
     border-radius: 0.5rem;
+
     // border-bottom-left-radius:
     height: 4rem;
     padding: 1rem;
     // margin: 1.6rem;
     margin: 1.6rem 0 0;
+  }
+
+  &__list-item {
+    color: grey;
+    margin: 1.6rem 0;
   }
 
   &__submit-button {

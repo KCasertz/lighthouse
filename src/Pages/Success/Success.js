@@ -4,6 +4,7 @@ import success from "../../assets/icons/success.png";
 import { useHistory } from "react-router-dom";
 import back from "../../assets/icons/back.png";
 import { useState } from "react";
+import { ExternalLink } from "react-external-link";
 
 import React from "react";
 
@@ -59,7 +60,9 @@ const Success = (props) => {
             <br />
             If you would like to help others in their search for the right
             support, please leave your email below and we will send you a link
-            to share a review about the service you referred yourself to.
+            to share a review about the service you referred yourself to. There
+            is no obligation to leave a review, even if you share your email
+            now.
           </p>
           <form
             className="success__email-form"
@@ -86,14 +89,45 @@ const Success = (props) => {
           </form>
 
           <div className="success__links">
-            <p className="success_text">
-              While you wait to hear back from your service, below are some
-              resources you may find useful:
-            </p>
-            <ul>
-              <li>resource one</li>
-              <li>resource two</li>
-              <li>resource three</li>
+            <h2>Extra resources, while you wait:</h2>
+            <p className="success__text"></p>
+            <ul className="success__resources">
+              <li className="success__list-item">
+                {" "}
+                <ExternalLink
+                  className="success__resource-link"
+                  href="https://togetherall.com/en-gb"
+                  target="_blank"
+                >
+                  <span className="success__emphasise">TogetherAll</span> - an
+                  online community to support people with mental health
+                  problems.
+                </ExternalLink>
+              </li>
+              <li className="success__list-item">
+                <ExternalLink
+                  className="success__resource-link"
+                  href=" https://swlondonccg.nhs.uk/your-health/wandsworth-wellbeing-hub/self-management-courses/"
+                  target="_blank"
+                >
+                  <span className="success__emphasise">
+                    Wandsworth Wellbeing Hub
+                  </span>{" "}
+                  - a free course to help people improve their health and
+                  wellbeing.
+                </ExternalLink>
+              </li>
+              <li className="success__list-item">
+                <ExternalLink
+                  className="success__resource-link"
+                  href=" https://giveusashout.org/about-us/about-shout/"
+                  target="_blank"
+                >
+                  <span className="success__emphasise">SHOUT</span> - a free
+                  24/7 text messaging support service for anyone who is
+                  struggling to cope.
+                </ExternalLink>
+              </li>
             </ul>
 
             <br />
