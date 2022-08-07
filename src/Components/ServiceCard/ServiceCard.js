@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import accessible from "../../assets/icons/accessible.png";
 
 const ServiceCard = (props) => {
-  const service = props.serviceDetails;
+  const service = props.details;
   const serviceId = service._id;
 
   const getAvg = (arr) => {

@@ -22,6 +22,7 @@ const ServiceDetails = (props) => {
   const services = props.results.results;
   const serviceId = props.match.params.serviceId;
   const service = services.find((service) => service._id === serviceId);
+  console.log("service found is -->", service);
   const lon = service.location.coordinates[0];
   const lat = service.location.coordinates[1];
 
@@ -48,9 +49,16 @@ const ServiceDetails = (props) => {
     }
   };
 
+  const copyTemplateToClipboard = () => {
+    navigator.clipboard.writeText("Did this work?");
+  };
+
   return (
     <section className="service">
       <div className="service__container">
+        {/* <button type="button" onClick={copyTemplateToClipboard}>
+          Copy to clipboard
+        </button> */}
         <div className="service__header-top" onClick={() => history.goBack()}>
           <img src={back} alt="back button" className="service__back-button" />
           <p className="service__back-icon">Back</p>

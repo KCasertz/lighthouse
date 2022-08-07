@@ -14,6 +14,7 @@ import Success from "./Pages/Success/Success";
 
 function App() {
   const [results, setResults] = useState([]);
+  const [therapists, setTherapists] = useState([]);
   const [userSearch, setUserSearch] = useState({});
 
   return (
@@ -24,7 +25,11 @@ function App() {
           path="/"
           exact
           render={() => (
-            <Home setResults={setResults} setUserSearch={setUserSearch} />
+            <Home
+              setResults={setResults}
+              setUserSearch={setUserSearch}
+              setTherapists={setTherapists}
+            />
           )}
         />
         <Route
@@ -33,6 +38,7 @@ function App() {
             <Results
               {...routerProps}
               results={results}
+              therapists={therapists}
               userSearch={userSearch}
             />
           )}

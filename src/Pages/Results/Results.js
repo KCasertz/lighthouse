@@ -6,8 +6,11 @@ import back from "../../assets/icons/back.png";
 import { useHistory } from "react-router-dom";
 
 const Results = (props) => {
-  console.log("props: ", props.results.results);
+  console.log("results props: ", props);
+
   const services = props.results.results;
+  const therapists = props.therapists.results;
+  console.log("therapists props; ", therapists);
   let history = useHistory();
 
   return !services ? (
@@ -29,18 +32,38 @@ const Results = (props) => {
 
         {services.length === 0 ? (
           <p className="results__text">
-            Sorry, there are no services that match your criteria right now.
+            Sorry, there are currently no services that match your criteria.
             Please click 'It's urgent' at the top of the page if you need
             support right now, otherwise go back and try amending your search.
           </p>
         ) : (
           <>
             {services.map((service, i) => {
-              return <ServiceCard serviceDetails={service} key={i} />;
+              return <ServiceCard details={service} key={i} />;
             })}
           </>
         )}
-        {/* <div>{services[0].name}</div> */}
+
+        {/* <div className="results__paid-container">
+          <h1 className="results__paid-heading">Matching paid therapists</h1>
+          <p className="results__text">
+            Please note - the results below are not free, but many offer a
+            reduced rate for those who are in financial difficulty.
+          </p>
+        </div>
+
+        {therapists.length === 0 ? (
+          <p className="results__text">
+            Sorry, there are currently no paid-for therapists that meet your
+            criteria.
+          </p>
+        ) : (
+          <>
+            {therapists.map((therapist, i) => {
+              return <ServiceCard details={therapist} key={i} />;
+            })}
+          </>
+        )} */}
       </div>
     </section>
   );

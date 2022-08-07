@@ -51,11 +51,12 @@ const Success = (props) => {
           <img src={success} alt="tick" className="success__image" />
           <h1 className="success__heading">Success</h1>
           <p className="success__text">
-            Your referreral link opened in a new window. You should hear back in{" "}
+            Your referreral link opened in a new window. Our data suggests the
+            waiting list is currently{" "}
             <span className="success__bold">
               {getAvgWait(service.waitingTime)}
             </span>{" "}
-            from referring yourself.
+            from referral.
             <br />
             <br />
             If you would like to help others in their search for the right

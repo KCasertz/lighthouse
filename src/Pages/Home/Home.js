@@ -25,11 +25,13 @@ export default function Home(props) {
   const [useCurrentLocation, setUseCurrentLocation] = useState(false);
   const [isAvailAnytime, setIsAvailAnytime] = useState(true);
 
-  const getResults = async (userSearchCriteria) => {
+  const getServiceResults = async (userSearchCriteria) => {
     console.log(
       "userSearchCrit inside getservicearray func: ",
       userSearchCriteria
     );
+
+    //make call to backend for service array
     try {
       const response = await axios.post(
         `http://localhost:8080/services/filtered`,
@@ -37,6 +39,23 @@ export default function Home(props) {
       );
       props.setResults(response.data);
       console.log("Data->", response.data);
+      getTherapistResults(userSearchCriteria);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //make call to backend for therapists array
+
+  const getTherapistResults = async (userSearchCriteria) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/therapists/filtered`,
+        userSearchCriteria
+      );
+      props.setTherapists(response.data);
+      console.log("Data therapists->", response.data);
+      history.push("/results");
     } catch (error) {
       console.log(error);
     }
@@ -126,11 +145,12 @@ export default function Home(props) {
 
     console.log("userSearchCriteria->", userSearchCriteria);
 
-    //make request to backend
-    getResults(userSearchCriteria);
+    //make request to backend - services
+    getServiceResults(userSearchCriteria);
+    //make request to backend - paid therapists
 
     //redirect to results page
-    history.push("/results");
+    // history.push("/results");
   };
 
   //create function which takes postcode and send postreq to API to convert to lat and long and sets state with result
@@ -240,7 +260,20 @@ export default function Home(props) {
                   travel to a service.
                 </label>
                 <div className="home__current-location-container">
-                  {useCurrentLocation === false ? (
+                  {useCurrentLocation ? (
+                    <>
+                      <p className="home__form-text home__form-text--current-location">
+                        (Using current location)
+                      </p>
+                      <button
+                        type="button"
+                        onClick={postcodeClickHandler}
+                        className="home__current-location-button"
+                      >
+                        Type postcode instead
+                      </button>
+                    </>
+                  ) : (
                     <>
                       <input
                         type="text"
@@ -254,19 +287,6 @@ export default function Home(props) {
                         onClick={currentLocationClickHandler}
                       >
                         Use current location
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <p className="home__form-text home__form-text--current-location">
-                        (Using current location)
-                      </p>
-                      <button
-                        type="button"
-                        onClick={postcodeClickHandler}
-                        className="home__current-location-button"
-                      >
-                        Type postcode instead
                       </button>
                     </>
                   )}
