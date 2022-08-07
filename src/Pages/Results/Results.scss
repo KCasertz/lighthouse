@@ -7,19 +7,19 @@
 .results {
   &__container {
     margin: 0 0.5rem;
-    background-color: $lighthouse-dark-blue;
+    background-color: white;
     padding: 2.4rem 0;
   }
 
   &__paid-container {
-    background-color: $lighthouse-yellow;
+    background-color: $lighthouse-dark-blue;
     padding: 2.4rem 0;
     margin: 0 0.5rem;
   }
 
   &__toggle-tabs-container {
     margin: 2.4rem 0.5rem 0 0.5rem;
-    background-color: white;
+    background-color: #ecebeb;
     // padding: 1.6rem;
     //   border: 1px solid $lighthouse-dark-blue;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
@@ -32,21 +32,22 @@
   }
 
   &__toggle-tab {
-    color: white;
+    // color: white;
     width: 50%;
     text-align: center;
     // background-color: $lighthouse-yellow;
     padding: 1.6rem 0;
 
     &--paid {
-      background-color: $lighthouse-yellow;
-      color: $lighthouse-dark-blue;
+      background-color: $lighthouse-dark-blue;
+      color: white;
       border-top-right-radius: 0.8rem;
       border-top-left-radius: 0.8rem;
     }
 
     &--free {
-      background-color: $lighthouse-dark-blue;
+      background-color: white;
+      color: $lighthouse-dark-blue;
       border-top-right-radius: 0.8rem;
       border-top-left-radius: 0.8rem;
     }
