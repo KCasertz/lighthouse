@@ -2,6 +2,7 @@ import "./ServiceDetails.scss";
 
 import AvailabilityTable from "../../Components/AvailabilityTable/AvailabilityTable";
 import React from "react";
+import { useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import waitList from "../../assets/icons/wait-icon.png";
 import { Link } from "react-router-dom";
@@ -17,15 +18,20 @@ import accessible from "../../assets/icons/accessible.png";
 import group from "../../assets/icons/group.png";
 import lgbt from "../../assets/icons/lgbt.png";
 import tick from "../../assets/icons/tick.png";
-// import { useState } from "react";
+import { useState } from "react";
+import ScrollToTop from "react-scroll-to-top";
 
 const ServiceDetails = (props) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
   // const [discountedPrice, setDiscountedPrice] = useState();
   console.log("service details props", props);
   const isFree = props.isFree;
   const services = props.results.results; //array
   const therapists = props.therapists.results; //array
   const currentId = props.match.params.currentId; //string
+  const [wasCopied, setWasCopied] = useState(false);
 
   let service = {};
   isFree
@@ -63,8 +69,21 @@ const ServiceDetails = (props) => {
     }
   };
 
-  const copyTemplateToClipboard = () => {
-    navigator.clipboard.writeText("Did this work?");
+  const copyTemplateToClipboard = (event) => {
+    console.log("event: ", event);
+    let delivery = "";
+    if (props.userSearch.deliveryMethod === "ftf") {
+      delivery = "face-to-face";
+    } else if (props.userSearch.deliveryMethod === "calls") {
+      delivery = "over the phone";
+    } else {
+      delivery = "over video calls";
+    }
+    const text = `Hi ${service.name}, I am looking for mental health support and found that you are offering what I need on Lighthouse.com. I would like to refer myself to your service and find out more please. I am primarily looking for support delivered ${delivery}. Please could you let me know what the next steps are? [sign off here]`;
+    navigator.clipboard.writeText(text);
+    event.target.innerText === ("Copied to clipboard" || "Copied again")
+      ? (event.target.innerText = "Copied again")
+      : (event.target.innerText = "Copied to clipboard");
   };
 
   // const calculateCost = (event) => {
@@ -236,6 +255,7 @@ const ServiceDetails = (props) => {
             <div className="service__key-info-bottom-container">
               <div className="service__key-info-left-container">
                 <p className="service__small-header">CONTACT</p>
+                <p className="service__small-header"></p>
               </div>
               <div className="service__key-info-right-container">
                 <div className="service__contact-info-container">
@@ -290,6 +310,16 @@ const ServiceDetails = (props) => {
                       </p>
                     </div>
                   </ExternalLink>
+                  <button
+                    className="service__clipboard-button"
+                    onClick={copyTemplateToClipboard}
+                  >
+                    {" "}
+                    Copy email template to clipboard
+                    {/* {wasCopied
+                      ? "Copied to clipboard"
+                      : "Copy email template to clipboard"} */}
+                  </button>
                 </div>
               </div>
             </div>

@@ -3,12 +3,16 @@ import successLighthouse from "../../assets/images/lighthouseYellow.avif";
 import success from "../../assets/icons/success.png";
 import { useHistory } from "react-router-dom";
 import back from "../../assets/icons/back.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ExternalLink } from "react-external-link";
+import ScrollToTop from "react-scroll-to-top";
 
 import React from "react";
 
 const Success = (props) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
   const [email, setEmail] = useState("");
   console.log("props", props);
   const services = props.results.results;

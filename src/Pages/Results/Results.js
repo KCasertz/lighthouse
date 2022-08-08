@@ -1,12 +1,18 @@
 import "./Results.scss";
 
 import React from "react";
+import { useEffect } from "react";
 import ServiceCard from "../../Components/ServiceCard/ServiceCard";
 import back from "../../assets/icons/back.png";
 import { useHistory } from "react-router-dom";
 import wait from "../../assets/icons/wait.gif";
+import ScrollToTop from "react-scroll-to-top";
 
 const Results = (props) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
+
   console.log("results props: ", props);
   const services = props.results.results;
   const therapists = props.therapists.results;
@@ -23,8 +29,8 @@ const Results = (props) => {
     service["avgRating"] = getAvg(service.ratings);
   });
 
-  console.log("avg: ", getAvg(services[0].waitingTime));
-  console.log("service pre new key", services[0]);
+  // console.log("avg: ", getAvg(services[0].waitingTime));
+  // console.log("service pre new key", services[0]);
 
   // services[0].avgWait = getAvg(services[0].waitingTime);
 
@@ -109,6 +115,7 @@ const Results = (props) => {
           )}
         </div>
       )}
+      <ScrollToTop smooth={true} top={20} />
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import API_URL from "../../api/api";
 import axios from "axios";
 import BACKEND_PORT from "../../api/api";
@@ -13,6 +13,10 @@ const helpers = require("../../helpers/helpers.js");
 // import { Link, useNavigate } from "react-router-dom";
 
 export default function Home(props) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
+
   const history = useHistory();
 
   // initialise state (default empty) for each input field
@@ -180,10 +184,10 @@ export default function Home(props) {
   };
 
   const currentLocationClickHandler = (event) => {
+    setUseCurrentLocation(true);
     navigator.geolocation.getCurrentPosition(function (position) {
       setLat(position.coords.latitude);
       setLong(position.coords.longitude);
-      setUseCurrentLocation(true);
     });
   };
 
