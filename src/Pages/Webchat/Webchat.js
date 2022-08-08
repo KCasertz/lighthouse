@@ -3,6 +3,7 @@ import { join } from "lodash";
 import React, { useState } from "react";
 import io from "socket.io-client";
 import Chat from "../../Components/Chat/Chat";
+import chat from "../../assets/icons/chat.png";
 
 const socket = io.connect("http://localhost:3333");
 
@@ -19,25 +20,26 @@ const Webchat = () => {
   };
 
   return (
-    <div className="app">
+    <div className="join">
       {!showChat ? (
-        <div className="joinChatContainer">
-          <h3>Join Chat</h3>
+        <div className="join__container">
+          <img src={chat} alt="chat icon" className="join__icon" />
+          <h3 className="join__header">Live Chat</h3>
+          <p className="join__text">Connect with one of our support workers.</p>
           <input
             type="text"
-            placeholder="John"
+            placeholder="Enter your name"
+            className="join__input"
+            onKeyPress={(event) => {
+              event.key === "Enter" && joinRoom();
+            }}
             onChange={(event) => {
               setUsername(event.target.value);
             }}
           />
-          {/* <input
-            type="text"
-            placeholder="Room ID"
-            onChange={(event) => {
-              setRoom(event.target.value);
-            }}
-          /> */}
-          <button onClick={joinRoom}>Join chat room</button>
+          <button className="join__button" onClick={joinRoom}>
+            Start chat
+          </button>
         </div>
       ) : (
         <Chat socket={socket} username={username} room={room} />
