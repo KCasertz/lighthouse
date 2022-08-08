@@ -11,6 +11,7 @@ import Footer from "./Components/Footer/Footer";
 import FourOhFour from "./Pages/FourOhFour/FourOhFour";
 import { useState } from "react";
 import Success from "./Pages/Success/Success";
+import Webchat from "./Pages/Webchat/Webchat";
 
 function App() {
   const [results, setResults] = useState([]);
@@ -33,6 +34,7 @@ function App() {
             />
           )}
         />
+        <Route path="/webchat" component={Webchat} />
         <Route
           path="/results"
           render={(routerProps) => (
@@ -62,6 +64,7 @@ function App() {
           path="/:serviceId/reviews"
           render={() => <Success results={results} userSearch={userSearch} />}
         />
+
         <Route
           path="/:serviceId/success"
           render={(routerProps) => (

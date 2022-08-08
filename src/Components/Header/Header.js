@@ -25,8 +25,9 @@ const Header = () => {
         </li>
         {/* 
         <li className="header__nav-list-item">Progress</li> */}
+
         <li className="header__nav-list-item header__nav-list-button">
-          It's urgent
+          <Link to="/webchat"> It's urgent </Link>
         </li>
       </ul>
     </div>
