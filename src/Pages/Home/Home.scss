@@ -230,6 +230,15 @@
     margin-left: 2.4rem;
   }
 
+  &__no-error {
+    display: none;
+  }
+
+  &__show-error-message {
+    color: red;
+    font-size: 1.6rem;
+  }
+
   &__availability-list-item {
     margin: 0.8rem 0 0.8rem 0;
   }

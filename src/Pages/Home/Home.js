@@ -29,7 +29,7 @@ export default function Home(props) {
   const [lat, setLat] = useState("");
   const [useCurrentLocation, setUseCurrentLocation] = useState(false);
   const [isAvailAnytime, setIsAvailAnytime] = useState(true);
-  const [isPostcodeError, setIsPostcodeError] = useState(false);
+  const [noPostcodeError, setNoPostcodeError] = useState(false);
 
   const getServiceResults = async (userSearchCriteria) => {
     console.log(
@@ -197,8 +197,7 @@ export default function Home(props) {
 
   const handlePostcodeChange = (event) => {
     setPostcode(event.target.value);
-
-    setIsPostcodeError(helpers.isValidPostcode(event.target.value));
+    setNoPostcodeError(helpers.isValidPostcode(event.target.value));
   };
 
   return (
@@ -286,22 +285,22 @@ export default function Home(props) {
                     Please enter your postcode, and select how far you could
                     travel to a service.
                   </label>
-                  <div className="home__current-location-container">
-                    {useCurrentLocation ? (
-                      <>
-                        <p className="home__form-text home__form-text--current-location">
-                          (Using current location)
-                        </p>
-                        <button
-                          type="button"
-                          onClick={postcodeClickHandler}
-                          className="home__current-location-button"
-                        >
-                          Type postcode instead
-                        </button>
-                      </>
-                    ) : (
-                      <>
+                  {useCurrentLocation ? (
+                    <div className="home__current-location-container">
+                      <p className="home__form-text home__form-text--current-location">
+                        (Using current location)
+                      </p>
+                      <button
+                        type="button"
+                        onClick={postcodeClickHandler}
+                        className="home__current-location-button"
+                      >
+                        Type postcode instead
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="home__current-location-container">
                         <input
                           type="text"
                           name="postcode"
@@ -315,9 +314,18 @@ export default function Home(props) {
                         >
                           Use current location
                         </button>
-                      </>
-                    )}
-                  </div>
+                      </div>
+                      <p
+                        className={
+                          noPostcodeError
+                            ? `home__no-error`
+                            : `home__show-error-message`
+                        }
+                      >
+                        Please enter a valid postcode.
+                      </p>
+                    </>
+                  )}
 
                   <div className="home__dropdown-container">
                     <label className="home__dropdown-text">
