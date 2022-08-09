@@ -21,7 +21,7 @@ const AvailabilityTable = (props) => {
 
   return (
     <>
-      <h2 className="availability__header">Your matching availability</h2>
+      <p className="availability__header">Your matching availability</p>
       <p className="availability__text">
         Below is a table showing the slots where you and {props.service.name}{" "}
         match availability
