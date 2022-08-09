@@ -1,3 +1,4 @@
+import React from "react";
 import "./Success.scss";
 import successLighthouse from "../../assets/images/lighthouseYellow.avif";
 import success from "../../assets/icons/success.png";
@@ -6,18 +7,20 @@ import back from "../../assets/icons/back.png";
 import { useState, useEffect } from "react";
 import { ExternalLink } from "react-external-link";
 import ScrollToTop from "react-scroll-to-top";
-
-import React from "react";
+const helpers = require("../../helpers/helpers.js");
 
 const Success = (props) => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, []);
   const [email, setEmail] = useState("");
+  const [noEmailError, setNoEmailError] = useState("");
   console.log("props", props);
   const services = props.results.results;
   const serviceId = props.match.params.serviceId;
   const service = services.find((service) => service._id === serviceId);
+  const lon = service.location.coordinates[0];
+  const lat = service.location.coordinates[1];
 
   let history = useHistory();
 
@@ -34,6 +37,10 @@ const Success = (props) => {
     } else {
       return `${result} months`;
     }
+  };
+
+  const checkEmail = (event) => {
+    setNoEmailError(helpers.isValidEmail(event.target.value));
   };
 
   return (
@@ -75,10 +82,19 @@ const Success = (props) => {
             <input
               type="text"
               name="email"
+              onChange={(event) => checkEmail(event)}
               className="success__email"
-              // onChange={(event) => setEmail(event.target.value)}
               placeholder="Please enter your email"
             />
+            <p
+              className={
+                noEmailError
+                  ? `success__no-error`
+                  : `success__show-error-message`
+              }
+            >
+              Please use a valid email address
+            </p>
             <button
               className="success__submit-button"
               type="button"

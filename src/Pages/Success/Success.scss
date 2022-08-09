@@ -28,6 +28,14 @@
     text-align: center;
   }
 
+  &__no-error {
+    display: none;
+  }
+
+  &__show-error-message {
+    color: red;
+  }
+
   &__emphasise {
     text-transform: uppercase;
     color: $lighthouse-dark-blue;
