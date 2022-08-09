@@ -395,7 +395,7 @@ export default function Home(props) {
               ) : (
                 <>
                   <label className="home__form-input-label">
-                    Please select your availability below.
+                    Please use the table below to show your availability.
                     <ul className="home__availability-list">
                       <li className="home__availability-list-item">
                         {" "}

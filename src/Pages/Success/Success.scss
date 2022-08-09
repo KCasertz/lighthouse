@@ -34,8 +34,15 @@
 
   &__show-error-message {
     color: red;
+    margin-left: 1.6rem;
   }
 
+  &__thank-you {
+    margin: 3.6rem 0;
+    color: $lighthouse-purple;
+    text-align: center;
+    font-size: 1.8rem;
+  }
   &__emphasise {
     text-transform: uppercase;
     color: $lighthouse-dark-blue;

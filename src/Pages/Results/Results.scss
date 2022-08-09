@@ -10,6 +10,15 @@
     background-color: white;
     padding: 2.4rem 0;
     // border-top-right-radius: 0.8rem;
+
+    @include aboveMobile {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      // max-width: 1280px;
+      margin: 0 6rem;
+      justify-content: flex-start;
+    }
   }
 
   &__paid-container {
@@ -17,6 +26,14 @@
     padding: 2.4rem 0;
     margin: 0 0.5rem;
     border-top-left-radius: 0.8rem;
+    @include aboveMobile {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      // max-width: 1280px;
+      margin: 0 6rem;
+      justify-content: flex-start;
+    }
   }
 
   &__toggle-tabs-container {
@@ -31,6 +48,11 @@
     display: flex;
     flex-direction: row;
     // background-color: $lighthouse-yellow;
+
+    @include aboveMobile {
+      // max-width: 1280px;
+      margin: 0 6rem;
+    }
   }
 
   &__toggle-tab {

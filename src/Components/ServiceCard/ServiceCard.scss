@@ -21,6 +21,12 @@ body {
   flex-direction: column;
   border: solid 1px $lighthouse-purple;
 
+  @include aboveMobile {
+    width: 31%;
+    min-width: 40rem;
+    max-width: 50rem;
+  }
+
   &__title {
     width: fit-content;
   }
@@ -52,6 +58,10 @@ body {
     padding: 0.8rem;
     color: white;
     margin-top: 1.6rem;
+
+    @include aboveMobile {
+      flex-grow: 1;
+    }
   }
   &__rating-text {
     font-size: 1.4rem;
@@ -64,6 +74,9 @@ body {
   &__summary {
     margin-top: 1.6rem;
     font-size: 1.8rem;
+    @include aboveMobile {
+      flex-grow: 2;
+    }
   }
   &__image-container {
     width: 100%;
@@ -94,6 +107,11 @@ body {
   &__top-container {
     display: flex;
     flex-direction: column;
+
+    @include aboveMobile {
+      flex-direction: row;
+      gap: 1.6rem;
+    }
   }
 
   &__middle-container {
@@ -162,6 +180,15 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
+  }
+
+  &__bottom-container {
+    @include aboveMobile {
+      display: flex;
+      flex-direction: column;
+      align-content: space-between;
+      min-height: 14rem;
+    }
   }
 
   &__tick-icon {

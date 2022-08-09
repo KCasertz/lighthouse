@@ -34,7 +34,6 @@ function App() {
             />
           )}
         />
-        <Route path="/webchat" component={Webchat} />
         <Route
           path="/results"
           render={(routerProps) => (
@@ -64,7 +63,7 @@ function App() {
           path="/:serviceId/reviews"
           render={() => <Success results={results} userSearch={userSearch} />}
         />
-
+        <Route path="/chat" component={Webchat} />
         <Route
           path="/:serviceId/success"
           render={(routerProps) => (

@@ -21,6 +21,7 @@ const Success = (props) => {
   const service = services.find((service) => service._id === serviceId);
   const lon = service.location.coordinates[0];
   const lat = service.location.coordinates[1];
+  const [submittedEmail, setSubmittedEmail] = useState();
 
   let history = useHistory();
 
@@ -68,44 +69,50 @@ const Success = (props) => {
               {getAvgWait(service.waitingTime)}
             </span>{" "}
             from referral.
-            <br />
-            <br />
-            Please leave your email below and we will send you a link to share a
-            review about the service you referred yourself to.
           </p>
-          <form
-            className="success__email-form"
-            onSubmit={() =>
-              alert("Thank you - you will receive an email shortly")
-            }
-          >
-            <input
-              type="text"
-              name="email"
-              onChange={(event) => checkEmail(event)}
-              className="success__email"
-              placeholder="Please enter your email"
-            />
-            <p
-              className={
-                noEmailError
-                  ? `success__no-error`
-                  : `success__show-error-message`
-              }
-            >
-              Please use a valid email address
+          <br />
+          <br />
+
+          {submittedEmail ? (
+            <p className="success__thank-you">
+              {" "}
+              Thank you for submitting your email - we will be in touch shortly
             </p>
-            <button
-              className="success__submit-button"
-              type="button"
-              onClick={(event) => {
-                event.preventDefault();
-                alert("Thank you - you will receive an email shortly");
-              }}
-            >
-              I want to review
-            </button>
-          </form>
+          ) : (
+            <>
+              <p className="success__text">
+                Please leave your email below and we will send you a link to
+                share a review about the service you referred yourself to.
+              </p>
+              <form
+                className="success__email-form"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  setSubmittedEmail(true);
+                }}
+              >
+                <input
+                  type="text"
+                  name="email"
+                  onChange={(event) => checkEmail(event)}
+                  className="success__email"
+                  placeholder="Please enter your email"
+                />
+                <p
+                  className={
+                    noEmailError
+                      ? `success__no-error`
+                      : `success__show-error-message`
+                  }
+                >
+                  Please use a valid email address
+                </p>
+                <button className="success__submit-button" type="submit">
+                  I want to review
+                </button>
+              </form>{" "}
+            </>
+          )}
 
           <div className="success__links">
             <h2>Extra resources, while you wait:</h2>
