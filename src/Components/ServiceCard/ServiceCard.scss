@@ -96,7 +96,7 @@ body {
     flex-direction: column;
   }
 
-  &__top-right-container {
+  &__middle-container {
     margin-top: 1.6rem;
   }
 
@@ -153,20 +153,12 @@ body {
   }
   &__image-overlay {
     font-size: 1.8rem;
-    // margin: 0 1.6rem 1.6rem;
     margin-bottom: 1.6rem;
-    // border: solid 2px $lighthouse-purple;
-    // border-radius: 1.5rem;
-    // margin-left: 0.8rem;
     border-top-right-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
     padding: 0.5rem 1rem;
     width: fit-content;
-    // display: flex;
-    // flex-direction: row;
     background-color: $lighthouse-yellow;
-    // position: relative;
-    // top: -4rem;
     position: absolute;
     bottom: 0;
     left: 0;

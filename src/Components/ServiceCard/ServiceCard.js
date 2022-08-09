@@ -6,10 +6,15 @@ import lgbt from "../../assets/icons/lgbt.png";
 import { Link } from "react-router-dom";
 import accessible from "../../assets/icons/accessible.png";
 import tick from "../../assets/icons/tick.png";
+import location from "../../assets/icons/location.png";
+// import { getDistance } from "geolib";
 
 const ServiceCard = (props) => {
+  console.log("service card props --> ", props);
   const service = props.details;
   const serviceId = service._id;
+  // const userLoc = props.userSearch.location.coordinates;
+  // const serviceLoc = props.details.location;
 
   const getAvg = (arr) => {
     return Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 10) / 10;
@@ -25,6 +30,18 @@ const ServiceCard = (props) => {
       return `${result} month's wait`;
     }
   };
+
+  // const getDistanceBetween = (userLoc, serviceLoc) => {
+  //   getDistance(
+  //     { latitude: userLoc.lat, longitude: userLoc.Long },
+  //     { latitude: serviceLoc[1], longitude: serviceLoc[0] }
+  //   );
+  // // };
+
+  // console.log(
+  //   "distance between is...",
+  //   getDistanceBetween(userLoc, serviceLoc)
+  // );
 
   return (
     <article className="card">
@@ -62,7 +79,7 @@ const ServiceCard = (props) => {
           </div>
         </div>
 
-        <div className="card__top-right-container">
+        <div className="card__middle-container">
           {service.pricePerHour ? (
             <>
               <div className="card__price-container">

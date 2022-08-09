@@ -55,19 +55,16 @@ const Success = (props) => {
           <img src={success} alt="tick" className="success__image" />
           <h1 className="success__heading">Success</h1>
           <p className="success__text">
-            Your referreral link opened in a new window. Our data suggests the
-            waiting list is currently{" "}
+            You were successfully referred. Our data suggests the waiting list
+            for this service is currently{" "}
             <span className="success__bold">
               {getAvgWait(service.waitingTime)}
             </span>{" "}
             from referral.
             <br />
             <br />
-            If you would like to help others in their search for the right
-            support, please leave your email below and we will send you a link
-            to share a review about the service you referred yourself to. There
-            is no obligation to leave a review, even if you share your email
-            now.
+            Please leave your email below and we will send you a link to share a
+            review about the service you referred yourself to.
           </p>
           <form
             className="success__email-form"
@@ -85,9 +82,10 @@ const Success = (props) => {
             <button
               className="success__submit-button"
               type="button"
-              onClick={() =>
-                alert("Thank you - you will receive an email shortly")
-              }
+              onClick={(event) => {
+                event.preventDefault();
+                alert("Thank you - you will receive an email shortly");
+              }}
             >
               I want to review
             </button>

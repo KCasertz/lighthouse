@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./Chat.scss";
 import ScrollToBottom from "react-scroll-to-bottom";
+import ScrollToTop from "react-scroll-to-top";
 
 const Chat = ({ socket, username, room }) => {
   const [currentMessage, setCurrentMessage] = useState("");
-  const [messageList, setMessageList] = useState([]);
+  const [messageList, setMessageList] = useState([
+    {
+      room: room,
+      author: "Ashen",
+      message:
+        "Hi, you're through to Ashen. I'm a support worker here at Lighthouse. How can I help?",
+      time:
+        new Date(Date.now()).getHours() +
+        ":" +
+        new Date(Date.now()).getMinutes(),
+    },
+  ]);
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -30,6 +42,13 @@ const Chat = ({ socket, username, room }) => {
     });
   }, [socket]);
 
+  const greeting = {
+    author: "Support worker",
+    message: "Hi, you're ",
+    room: 1,
+    time: "0:32",
+  };
+
   return (
     <section className="chat">
       <div className="chat-window">
@@ -47,7 +66,7 @@ const Chat = ({ socket, username, room }) => {
                 >
                   <div>
                     <div className="message-content">
-                      <p>{messageContent.message}</p>
+                      <p className="message">{messageContent.message}</p>
                     </div>
                     <div className="message-meta">
                       <p id="time">{messageContent.time}</p>
@@ -65,8 +84,9 @@ const Chat = ({ socket, username, room }) => {
               setCurrentMessage(event.target.value);
             }}
             type="text"
+            className="footer-text"
             value={currentMessage}
-            placeholder="hey..."
+            placeholder="Type your message here"
             onKeyPress={(event) => {
               event.key === "Enter" && sendMessage();
             }}
