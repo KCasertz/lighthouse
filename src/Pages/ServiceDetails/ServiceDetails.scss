@@ -37,6 +37,18 @@
     padding: 1.8rem;
   }
 
+  &__directions-button {
+    background-color: white;
+    color: $lighthouse-dark-blue;
+    border-radius: 5rem;
+    border: solid 1px $lighthouse-purple;
+    padding: 0.8rem 1.6rem;
+    text-align: center;
+    margin: 0.8rem auto;
+    width: 20rem;
+    font-size: 1.6rem;
+  }
+
   &__clipboard-button {
     background-color: white;
     color: $lighthouse-dark-blue;

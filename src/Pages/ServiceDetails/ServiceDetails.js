@@ -334,6 +334,11 @@ const ServiceDetails = (props) => {
               className="service__map"
             />
           </div>
+          <a target="_blank" href={`https://maps.google.com/?q=${lat},${lon}`}>
+            <button className="service__directions-button">
+              Get directions
+            </button>
+          </a>
           <div className="service__availability-mapping">
             <AvailabilityTable
               service={service}
