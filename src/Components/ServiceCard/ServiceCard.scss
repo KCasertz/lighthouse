@@ -8,13 +8,11 @@ body {
   background-color: rgb(236, 235, 235);
 }
 .card {
-  // margin: 2.4rem 1.6rem;
   margin: 0 1rem 2.4rem 1rem;
   margin-bottom: 4.6rem;
   background-color: white;
   padding: 1.6rem;
-  //   border: 1px solid $lighthouse-dark-blue;
-  // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 0.8rem;
   display: flex;
@@ -83,15 +81,12 @@ body {
   &__image-container {
     width: 100%;
     max-height: 20rem;
-    // height: 12rem;
-    // width: 12rem;
+
     overflow: hidden;
     display: flex;
     justify-content: center;
-    // align-items: center;
-    position: relative;
 
-    // border-radius: 5rem;
+    position: relative;
   }
 
   &__wait-icon {
@@ -101,7 +96,6 @@ body {
   &__wait-container {
     display: flex;
     flex-direction: row;
-    // margin: 1.6rem 1.6rem 1.6rem;
     align-items: center;
     gap: 1.2rem;
   }
@@ -165,7 +159,6 @@ body {
 
   &__price {
     font-size: 1.8rem;
-    // margin: 0 1.6rem;
     border: solid 2px $lighthouse-purple;
     border-radius: 1.5rem;
     padding: 0.5rem 1rem;
@@ -200,21 +193,15 @@ body {
 
   &__scale {
     font-size: 1.8rem;
-    // margin: 0 1.6rem;
     border: solid 2px $lighthouse-purple;
     border-radius: 1.5rem;
     padding: 0.5rem 1rem;
     width: fit-content;
   }
-  // &__pound-icon {
-  //   height: 3rem;
-  // }
   &__image {
     object-fit: cover;
     object-position: center;
 
-    // border-radius: 1rem;
-    // height: 100%;
     max-height: 20rem;
     width: 100%;
   }

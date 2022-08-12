@@ -6,12 +6,10 @@
 
 .chat {
   width: 100%;
-  //   font-size: 1.8rem;
 }
 .chat-window {
   width: 100%;
   height: 420px;
-  //   font-size: 1.8rem;
 }
 
 .chat__header {
@@ -19,7 +17,6 @@
 }
 .chat-window p {
   margin: 0;
-  //   font-size: 2.4rem;
 }
 
 .footer-text {
@@ -47,7 +44,7 @@
 
 .chat-window .chat-body {
   height: calc(450px - (45px + 70px));
-  //   border: 1px solid #263238;
+
   background: #fff;
 
   position: relative;
@@ -113,14 +110,12 @@
   justify-content: flex-end;
   background-color: $lighthouse-dark-blue;
   color: white;
-  //   background-color: $lighthouse-dark-blue;
 }
 
 #other .message-meta {
   justify-content: flex-end;
   margin-right: 5px;
   color: $lighthouse-dark-blue;
-  //   font-size: 1.2rem;
 }
 
 .message-meta #author {
@@ -130,7 +125,6 @@
 
 .chat-window .chat-body .message .message-meta {
   display: flex;
-  //   font-size: 12px;
 }
 
 .chat-window .chat-footer {
@@ -145,8 +139,6 @@
   flex: 85%;
   border: 0;
   padding: 0 0.7em;
-  //   font-size: 2.4rem;
-  //   border-right: 1px dotted #607d8b;
 
   outline: none;
 }
@@ -160,7 +152,7 @@
   height: 100%;
   background: $lighthouse-yellow;
   outline: none;
-  //   font-size: 25px;
+
   color: $lighthouse-dark-blue;
   border-bottom-right-radius: 0.8rem;
 }

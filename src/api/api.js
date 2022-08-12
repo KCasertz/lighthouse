@@ -1,3 +1,5 @@
-const API_URL = process.env.REACT_APP_API_KEY;
-
-export default API_URL;
+const GEOAPIFY_API_KEY = process.env.REACT_APP_GEOAPIFY_API_KEY;
+const MAPBOX_API_URL = process.env.REACT_APP_MAPBOX_API_KEY;
+const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT;
+const SOCKET_PORT = process.env.REACT_APP_SOCKET_PORT;
+export { GEOAPIFY_API_KEY, BACKEND_PORT, MAPBOX_API_URL, SOCKET_PORT };

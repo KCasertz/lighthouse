@@ -10,16 +10,6 @@ const isValidEmail = (email) => {
   }
 };
 
-const isValidPhoneNumber = (number) => {
-  const regex = /^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$/;
-
-  if (regex.exec(number)) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
 const isValidPostcode = (postcode) => {
   const regex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i;
 
@@ -36,7 +26,6 @@ const getNewId = () => {
 
 module.exports = {
   getNewId,
-  isValidPhoneNumber,
   isValidEmail,
   isValidPostcode,
 };

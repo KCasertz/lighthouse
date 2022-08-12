@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Success.scss";
 import successLighthouse from "../../assets/images/lighthouseYellow.avif";
 import success from "../../assets/icons/success.png";
 import { useHistory } from "react-router-dom";
 import back from "../../assets/icons/back.png";
-import { useState, useEffect } from "react";
 import { ExternalLink } from "react-external-link";
-import ScrollToTop from "react-scroll-to-top";
+
 const helpers = require("../../helpers/helpers.js");
 
 const Success = (props) => {
@@ -15,12 +14,9 @@ const Success = (props) => {
   }, []);
   const [email, setEmail] = useState("");
   const [noEmailError, setNoEmailError] = useState("");
-  console.log("props", props);
   const services = props.results.results;
   const serviceId = props.match.params.serviceId;
   const service = services.find((service) => service._id === serviceId);
-  const lon = service.location.coordinates[0];
-  const lat = service.location.coordinates[1];
   const [submittedEmail, setSubmittedEmail] = useState();
 
   let history = useHistory();

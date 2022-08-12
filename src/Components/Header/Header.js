@@ -23,9 +23,6 @@ const Header = () => {
         <li className="header__nav-list-item">
           <Link to="/">Find a service</Link>
         </li>
-        {/* 
-        <li className="header__nav-list-item">Progress</li> */}
-
         <li className="header__nav-list-item header__nav-list-button">
           <Link to="/chat"> It's urgent </Link>
         </li>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Chat.scss";
 import ScrollToBottom from "react-scroll-to-bottom";
-import ScrollToTop from "react-scroll-to-top";
 
 const Chat = ({ socket, username, room }) => {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -41,13 +40,6 @@ const Chat = ({ socket, username, room }) => {
       setMessageList((list) => [...list, data]);
     });
   }, [socket]);
-
-  const greeting = {
-    author: "Support worker",
-    message: "Hi, you're ",
-    room: 1,
-    time: "0:32",
-  };
 
   return (
     <section className="chat">

@@ -1,17 +1,11 @@
-import { useState, useEffect } from "react";
-import API_URL from "../../api/api";
+import React, { useState, useEffect } from "react";
+import { GEOAPIFY_API_KEY } from "../../api/api";
 import axios from "axios";
-import BACKEND_PORT from "../../api/api";
+import { BACKEND_PORT } from "../../api/api";
 import { useHistory } from "react-router-dom";
-import React from "react";
 import "./Home.scss";
-import lighthouseAnimation from "../../assets/lighthouseIconOne.gif";
 import heroImage from "../../assets/images/lighthouseHero.jpg";
 const helpers = require("../../helpers/helpers.js");
-
-// import { RadioGroup, Radio } from "react-radio-group";
-
-// import { Link, useNavigate } from "react-router-dom";
 
 export default function Home(props) {
   useEffect(() => {
@@ -20,7 +14,6 @@ export default function Home(props) {
 
   const history = useHistory();
 
-  // initialise state (default empty) for each input field
   const [deliveryMethod, setDeliveryMethod] = useState("");
   const [maxRad, setMaxRad] = useState(5);
   const [postCode, setPostcode] = useState("");
@@ -32,46 +25,36 @@ export default function Home(props) {
   const [noPostcodeError, setNoPostcodeError] = useState(false);
 
   const getServiceResults = async (userSearchCriteria) => {
-    console.log(
-      "userSearchCrit inside getservicearray func: ",
-      userSearchCriteria
-    );
-
-    //make call to backend for service array
     try {
       const response = await axios.post(
-        `http://localhost:8080/services/filtered`,
+        `http://localhost:${BACKEND_PORT}/services/filtered`,
         userSearchCriteria
       );
       props.setResults(response.data);
-      console.log("Data->", response.data);
       getTherapistResults(userSearchCriteria);
     } catch (error) {
       console.log(error);
     }
   };
 
-  //make call to backend for therapists array
-
   const getTherapistResults = async (userSearchCriteria) => {
     try {
       const response = await axios.post(
-        `http://localhost:8080/therapists/filtered`,
+        `http://localhost:${BACKEND_PORT}/therapists/filtered`,
         userSearchCriteria
       );
       props.setTherapists(response.data);
-      console.log("Data therapists->", response.data);
+
       history.push("/results");
     } catch (error) {
       console.log(error);
     }
   };
 
-  //function to toggle availability checkboxes
   const handleAvailabilityChange = (value) => {
     setIsAvailAnytime(value);
   };
-  //create function that removes first space from postcode string
+
   const removeFirstSpace = (string) => {
     return string.replace(" ", "");
   };
@@ -149,20 +132,15 @@ export default function Home(props) {
 
     props.setUserSearch(userSearchCriteria);
 
-    console.log("userSearchCriteria->", userSearchCriteria);
-
-    //make request to backend - services
     getServiceResults(userSearchCriteria);
-    //make request to backend - paid therapists
   };
 
-  //create function which takes postcode and send postreq to API to convert to lat and long and sets state with result
   const getLongLat = (event) => {
-    //first remove any spaces if there are any
     const postcodeNoSpace = removeFirstSpace(postCode);
 
-    //create dynamic url and send to API
-    const apiURL = `https://api.geoapify.com/v1/geocode/search?text=${postcodeNoSpace}&lang=en&limit=1&type=postcode&format=json&apiKey=${API_URL}`;
+    //FIXME: move above to helpers
+
+    const apiURL = `https://api.geoapify.com/v1/geocode/search?text=${postcodeNoSpace}&lang=en&limit=1&type=postcode&format=json&apiKey=${GEOAPIFY_API_KEY}`;
 
     axios
       .get(apiURL)
@@ -177,7 +155,6 @@ export default function Home(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    //add validation here then send off to relevant function based on current location
     deliveryMethod !== "ftf" || useCurrentLocation
       ? compileSearchObject(event)
       : getLongLat(event);
@@ -211,14 +188,6 @@ export default function Home(props) {
           />
         </div>
       </div>
-      {/* 
-      <section className="home__main">
-        <img
-          src={lighthouseAnimation}
-          alt="lighthouse"
-          className="home__lighthouse-animation"
-        />
-      </section> */}
 
       <section className="home__main">
         <div className="home__wrapper">
@@ -398,15 +367,12 @@ export default function Home(props) {
                     Please use the table below to show your availability.
                     <ul className="home__availability-list">
                       <li className="home__availability-list-item">
-                        {" "}
                         Am = 08:00 - 12:00
                       </li>
                       <li className="home__availability-list-item">
-                        {" "}
-                        Pm = 12:00 - 17:00{" "}
+                        Pm = 12:00 - 17:00
                       </li>
                       <li className="home__availability-list-item">
-                        {" "}
                         Eve = 17:00 - 20:00
                       </li>
                     </ul>
@@ -579,14 +545,12 @@ export default function Home(props) {
                       </div>
                       <div className="home__availability-col">
                         <input
-                          className="availability__checkbox"
                           id="monEve"
                           type="checkbox"
                           name="availability"
                           value="monEve"
                           defaultChecked
                         />
-                        <span className="availability__checkmark"></span>
                       </div>
                       <div className="home__availability-col">
                         <input

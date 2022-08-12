@@ -1,12 +1,11 @@
 import "./Webchat.scss";
-import { join } from "lodash";
 import React, { useState } from "react";
 import io from "socket.io-client";
 import Chat from "../../Components/Chat/Chat";
 import chat from "../../assets/icons/chat.png";
-import ScrollToTop from "react-scroll-to-top";
+import { SOCKET_PORT } from "../../api/api";
 
-const socket = io.connect("http://localhost:3333");
+const socket = io.connect(`http://localhost:${SOCKET_PORT}`);
 
 const Webchat = () => {
   const [username, setUsername] = useState("");

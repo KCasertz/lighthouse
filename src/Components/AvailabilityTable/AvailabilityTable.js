@@ -1,6 +1,5 @@
 import "./AvailabilityTable.scss";
 import tick from "../../assets/icons/tick.png";
-
 import React from "react";
 
 const AvailabilityTable = (props) => {
@@ -14,7 +13,7 @@ const AvailabilityTable = (props) => {
         ? matchingSlots.push(true)
         : matchingSlots.push(false);
     });
-    console.log("matching slots output:", matchingSlots);
+
     return matchingSlots;
   };
   const matchArr = getMatchingSlots(userAvailArr, serviceAvailArr);

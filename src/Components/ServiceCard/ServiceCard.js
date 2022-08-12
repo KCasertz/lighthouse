@@ -6,19 +6,16 @@ import lgbt from "../../assets/icons/lgbt.png";
 import { Link } from "react-router-dom";
 import accessible from "../../assets/icons/accessible.png";
 import tick from "../../assets/icons/tick.png";
-import location from "../../assets/icons/location.png";
-// import { getDistance } from "geolib";
 
 const ServiceCard = (props) => {
-  console.log("service card props --> ", props);
   const service = props.details;
   const serviceId = service._id;
-  // const userLoc = props.userSearch.location.coordinates;
-  // const serviceLoc = props.details.location;
 
   const getAvg = (arr) => {
     return Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 10) / 10;
   };
+
+  // FIXME: move above into helper function
 
   const getAvgWait = (arr) => {
     const result = Math.ceil(getAvg(arr));
@@ -31,18 +28,6 @@ const ServiceCard = (props) => {
     }
   };
 
-  // const getDistanceBetween = (userLoc, serviceLoc) => {
-  //   getDistance(
-  //     { latitude: userLoc.lat, longitude: userLoc.Long },
-  //     { latitude: serviceLoc[1], longitude: serviceLoc[0] }
-  //   );
-  // // };
-
-  // console.log(
-  //   "distance between is...",
-  //   getDistanceBetween(userLoc, serviceLoc)
-  // );
-
   return (
     <article className="card">
       <div className="card__header">
@@ -54,7 +39,6 @@ const ServiceCard = (props) => {
           <ReactStars
             count={5}
             value={getAvg(service.ratings)}
-            // onChange={ratingChanged}
             size={20}
             activeColor="#EEA807"
           />
